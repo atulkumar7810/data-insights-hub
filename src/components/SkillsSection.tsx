@@ -133,32 +133,9 @@ const SkillsSection = () => {
                     </span>
                   </div>
                   
-                  <h3 className="font-display text-lg font-semibold text-foreground mb-4 group-hover:text-accent transition-colors">
+                  <h3 className="font-display text-lg font-semibold text-foreground group-hover:text-accent transition-colors">
                     {skill.name}
                   </h3>
-                  
-                  {/* Progress Bar */}
-                  <div className="relative pt-1">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-xs text-muted-foreground">Proficiency</span>
-                      <motion.span
-                        initial={{ opacity: 0 }}
-                        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-                        transition={{ delay: 0.8 + index * 0.05 }}
-                        className="text-sm font-bold text-foreground"
-                      >
-                        {skill.level}%
-                      </motion.span>
-                    </div>
-                    <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                      <motion.div
-                        className={`h-full rounded-full bg-gradient-to-r ${skill.color}`}
-                        initial={{ width: 0 }}
-                        animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
-                        transition={{ delay: 0.3 + index * 0.05, duration: 1, ease: 'easeOut' }}
-                      />
-                    </div>
-                  </div>
                 </div>
               </div>
             </motion.div>
