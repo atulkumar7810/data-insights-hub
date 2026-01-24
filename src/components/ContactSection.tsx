@@ -30,8 +30,8 @@ const contactInfo = [
   {
     icon: Linkedin,
     label: 'LinkedIn',
-    value: 'atulkumar-s78',
-    href: 'https://www.linkedin.com/in/atulkumar-s78/',
+    value: 'atulkumar-s',
+    href: 'https://www.linkedin.com/in/atulkumar-s/',
   },
   {
     icon: Github,
@@ -188,7 +188,7 @@ const ContactSection = () => {
                   </a>
                 </Button>
                 <Button variant="outline" size="sm" asChild>
-                  <a href="https://www.linkedin.com/in/atulkumar-s78/" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.linkedin.com/in/atulkumar-s/" target="_blank" rel="noopener noreferrer">
                     <Linkedin className="w-4 h-4 mr-2" />
                     Connect
                   </a>
