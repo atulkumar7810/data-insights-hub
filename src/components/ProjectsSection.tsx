@@ -2,13 +2,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { ExternalLink, Github, Filter, ArrowUpRight, Folder } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 const projects = [
   {
     title: 'AtliQ Mart Sales Analysis',
-    description: 'Comprehensive FMCG sales analysis project involving 50,000+ records. Built interactive Power BI dashboards for KPIs, revenue trends, and product performance analysis.',
-    tools: ['SQL', 'Excel', 'Power BI'],
+    description: 'Comprehensive FMCG sales analysis with 50,000+ records. Built interactive Power BI dashboards tracking KPIs, revenue trends, and product performance for management decision-making.',
+    tools: ['Power BI', 'Excel'],
     domain: 'FMCG',
     gradient: 'from-blue-600 via-blue-500 to-cyan-500',
     outcomes: [
@@ -17,27 +16,45 @@ const projects = [
       'Identified key revenue drivers',
       'Created management reports',
     ],
-    github: 'https://github.com/atulkumar7810',
+    github: 'https://github.com/atulkumar7810/AtliQ_Mart-Analysis',
+    demo: 'https://atulkumar7810.github.io/my_portfolio_website/pages/Atliq_mart.html',
     featured: true,
   },
   {
-    title: 'Real Estate Capstone Project',
-    description: 'End-to-end data science project with web scraping, data cleaning, EDA, and machine learning. Achieved 92% accuracy in property price prediction for Gurgaon.',
-    tools: ['Python', 'BeautifulSoup', 'Scikit-learn'],
+    title: 'GoodCabs Performance Analysis',
+    description: 'Transportation analytics for tier-2 city cab service. Analyzed trip volumes, passenger satisfaction, and repeat rates to support 2024 growth targets and operational efficiency.',
+    tools: ['SQL', 'Power BI', 'Excel'],
+    domain: 'Transportation',
+    gradient: 'from-amber-500 via-orange-500 to-red-500',
+    outcomes: [
+      'Identified top cities (Pune, Nashik)',
+      'Analyzed revenue trends & peaks',
+      'Repeat passenger behavior insights',
+      'Actionable growth recommendations',
+    ],
+    github: 'https://github.com/atulkumar7810/GoodCabs-Analysis',
+    demo: 'https://atulkumar7810.github.io/my_portfolio_website/pages/GoodCabs_analysis.html',
+    featured: true,
+  },
+  {
+    title: 'Gurgaon Real Estate Analysis',
+    description: 'End-to-end data science project with web scraping, EDA, and ML. Built price prediction model achieving 92% accuracy and a Streamlit recommendation system.',
+    tools: ['Python', 'Scikit-learn', 'Streamlit'],
     domain: 'Real Estate',
     gradient: 'from-emerald-600 via-emerald-500 to-teal-500',
     outcomes: [
       'Scraped 3,000+ property records',
       'Feature engineering & EDA',
       '92% accuracy prediction model',
-      'Random Forest implementation',
+      'Streamlit web app deployed',
     ],
-    github: 'https://github.com/atulkumar7810',
+    github: 'https://github.com/atulkumar7810/Gurgaon_Housing_Market_Analysis',
+    demo: 'https://atulkumar7810.github.io/my_portfolio_website/pages/Gurgoan_propert_analysis.html',
     featured: true,
   },
   {
     title: 'Quantium Virtual Internship',
-    description: 'Customer transaction analysis project focusing on retail analytics, uplift testing, and store optimization for data-driven marketing strategies.',
+    description: 'Retail analytics project focusing on customer transaction analysis, uplift testing, and store layout optimization for data-driven marketing strategies.',
     tools: ['SQL', 'Excel', 'Power BI'],
     domain: 'Retail',
     gradient: 'from-purple-600 via-purple-500 to-pink-500',
@@ -48,11 +65,44 @@ const projects = [
       'Store optimization insights',
     ],
     github: 'https://github.com/atulkumar7810',
+    demo: null,
     featured: true,
+  },
+  {
+    title: 'Credit Risk Modeling',
+    description: 'Financial risk assessment model to evaluate creditworthiness and support lending decisions. Built classification models using Python and machine learning techniques.',
+    tools: ['Python', 'Jupyter'],
+    domain: 'Finance',
+    gradient: 'from-slate-600 via-slate-500 to-zinc-500',
+    outcomes: [
+      'Risk assessment pipeline',
+      'Feature importance analysis',
+      'Classification model built',
+      'Lending decision support',
+    ],
+    github: 'https://github.com/atulkumar7810/Credit-Risk-Modeling',
+    demo: null,
+    featured: false,
+  },
+  {
+    title: 'SMS Spam Classifier',
+    description: 'NLP-based spam detection system using machine learning. Built text classification model to automatically identify and filter spam messages from legitimate communications.',
+    tools: ['Python', 'NLP', 'Jupyter'],
+    domain: 'NLP',
+    gradient: 'from-rose-600 via-pink-500 to-fuchsia-500',
+    outcomes: [
+      'Text preprocessing pipeline',
+      'TF-IDF feature extraction',
+      'Classification model trained',
+      'High accuracy spam detection',
+    ],
+    github: 'https://github.com/atulkumar7810/SMS-Spam-Classifier',
+    demo: null,
+    featured: false,
   },
 ];
 
-const filters = ['All', 'SQL', 'Power BI', 'Python', 'FMCG', 'Real Estate', 'Retail'];
+const filters = ['All', 'SQL', 'Power BI', 'Python', 'FMCG', 'Real Estate', 'Retail', 'Transportation', 'Finance'];
 
 const ProjectsSection = () => {
   const ref = useRef(null);
@@ -164,7 +214,7 @@ const ProjectsSection = () => {
                     </div>
                     
                     {/* Tools Badge */}
-                    <div className="absolute bottom-4 left-4 flex gap-2">
+                    <div className="absolute bottom-4 left-4 flex flex-wrap gap-2">
                       {project.tools.map((tool) => (
                         <span
                           key={tool}
@@ -199,7 +249,7 @@ const ProjectsSection = () => {
                         {project.title}
                       </h3>
                       {project.featured && (
-                        <span className="px-2.5 py-1 bg-accent/10 text-accent text-xs font-semibold rounded-lg">
+                        <span className="px-2.5 py-1 bg-accent/10 text-accent text-xs font-semibold rounded-lg shrink-0 ml-2">
                           Featured
                         </span>
                       )}
@@ -235,15 +285,17 @@ const ProjectsSection = () => {
                         <Github className="w-4 h-4" />
                         Code
                       </a>
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-accent hover:bg-accent/90 text-accent-foreground text-sm font-medium rounded-xl transition-colors"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        Demo
-                      </a>
+                      {project.demo && (
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-accent hover:bg-accent/90 text-accent-foreground text-sm font-medium rounded-xl transition-colors"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                          Demo
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>

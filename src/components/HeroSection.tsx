@@ -168,7 +168,7 @@ const HeroSection = () => {
                 <Github className="w-5 h-5 text-hero-text group-hover:text-accent-foreground transition-colors" />
               </motion.a>
               <motion.a
-                href="https://www.linkedin.com/in/atulkumar-s78/"
+                href="https://www.linkedin.com/in/atulkumar-s/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 bg-hero-text/10 hover:bg-accent backdrop-blur-sm border border-hero-text/20 hover:border-accent rounded-xl transition-all duration-300 group"

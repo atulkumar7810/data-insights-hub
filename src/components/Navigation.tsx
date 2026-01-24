@@ -132,7 +132,7 @@ const Navigation = () => {
               <Github className="w-5 h-5" />
             </a>
             <a
-              href="https://www.linkedin.com/in/atulkumar-s78/"
+              href="https://www.linkedin.com/in/atulkumar-s/"
               target="_blank"
               rel="noopener noreferrer"
               className="p-2.5 text-muted-foreground hover:text-foreground hover:bg-secondary rounded-xl transition-colors"
@@ -206,7 +206,7 @@ const Navigation = () => {
                   <Github className="w-5 h-5" />
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/atulkumar-s78/"
+                  href="https://www.linkedin.com/in/atulkumar-s/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-secondary hover:bg-secondary/80 rounded-xl transition-colors"
