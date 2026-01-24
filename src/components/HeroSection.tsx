@@ -110,7 +110,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-lg md:text-xl text-primary-foreground/80 mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed"
+              className="text-lg md:text-xl text-primary-foreground/90 mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed"
             >
               An entry-level Data Analyst skilled in SQL, Advanced Excel, Power BI, and Python. 
               Passionate about transforming raw data into actionable insights.
