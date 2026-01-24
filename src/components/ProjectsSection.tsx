@@ -252,43 +252,6 @@ const ProjectsSection = () => {
           </AnimatePresence>
         </motion.div>
 
-        {/* GitHub CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.5 }}
-          className="text-center mt-16"
-        >
-          <motion.div 
-            className="inline-flex flex-col items-center p-8 md:p-10 bg-card border border-border rounded-3xl"
-            whileHover={{ y: -4 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="w-16 h-16 bg-foreground rounded-2xl flex items-center justify-center mb-6 shadow-lg">
-              <Github className="w-8 h-8 text-background" />
-            </div>
-            <h3 className="font-display text-2xl font-bold text-foreground mb-3">
-              View More on GitHub
-            </h3>
-            <p className="text-muted-foreground mb-6 max-w-md">
-              Explore more projects and code repositories with clean, well-documented implementations.
-            </p>
-            <Button
-              asChild
-              size="lg"
-              className="bg-foreground text-background hover:bg-foreground/90 shadow-lg"
-            >
-              <a
-                href="https://github.com/atulkumar7810"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Github className="w-5 h-5 mr-2" />
-                Visit GitHub Profile
-              </a>
-            </Button>
-          </motion.div>
-        </motion.div>
       </div>
     </section>
   );
