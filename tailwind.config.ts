@@ -57,6 +57,8 @@ export default {
         navy: "hsl(var(--navy))",
         "light-gray": "hsl(var(--light-gray))",
         slate: "hsl(var(--slate))",
+        "hero-text": "hsl(var(--hero-text))",
+        "hero-text-muted": "hsl(var(--hero-text-muted))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
