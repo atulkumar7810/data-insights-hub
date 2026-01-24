@@ -44,6 +44,10 @@
     --light-gray: 210 15% 96%;
     --slate: 220 10% 45%;
     
+    /* Hero text - white for dark backgrounds */
+    --hero-text: 0 0% 100%;
+    --hero-text-muted: 210 15% 85%;
+    
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(215 80% 20%) 0%, hsl(175 70% 40%) 100%);
     --gradient-hero: linear-gradient(135deg, hsl(215 80% 20% / 0.95) 0%, hsl(220 20% 10% / 0.9) 100%);
@@ -77,15 +81,15 @@
     --popover-foreground: 210 15% 96%;
 
     --primary: 175 70% 45%;
-    --primary-foreground: 220 20% 10%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 220 15% 18%;
     --secondary-foreground: 210 15% 96%;
 
     --muted: 220 15% 18%;
-    --muted-foreground: 220 10% 55%;
+    --muted-foreground: 220 10% 65%;
 
-    --accent: 175 70% 45%;
+    --accent: 175 70% 50%;
     --accent-foreground: 220 20% 10%;
 
     --destructive: 0 62% 50%;
@@ -97,20 +101,24 @@
 
     --charcoal: 210 15% 96%;
     --deep-blue: 210 80% 60%;
-    --teal: 175 70% 50%;
+    --teal: 175 70% 55%;
     --navy: 215 60% 25%;
     --light-gray: 220 15% 18%;
-    --slate: 220 10% 55%;
+    --slate: 220 10% 65%;
 
-    --gradient-primary: linear-gradient(135deg, hsl(175 70% 45%) 0%, hsl(190 80% 40%) 100%);
-    --gradient-hero: linear-gradient(135deg, hsl(220 20% 5% / 0.92) 0%, hsl(215 40% 10% / 0.88) 100%);
+    /* Hero text - pure white for maximum contrast */
+    --hero-text: 0 0% 100%;
+    --hero-text-muted: 210 15% 90%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(175 70% 50%) 0%, hsl(190 80% 45%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(220 25% 8% / 0.85) 0%, hsl(215 35% 12% / 0.80) 100%);
     --gradient-card: linear-gradient(145deg, hsl(220 20% 12%) 0%, hsl(220 20% 15%) 100%);
-    --gradient-accent: linear-gradient(135deg, hsl(175 70% 45%) 0%, hsl(190 80% 40%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(175 70% 50%) 0%, hsl(190 80% 45%) 100%);
 
     --shadow-sm: 0 2px 8px hsl(0 0% 0% / 0.2);
     --shadow-md: 0 4px 20px hsl(0 0% 0% / 0.3);
     --shadow-lg: 0 8px 40px hsl(0 0% 0% / 0.4);
-    --shadow-glow: 0 0 40px hsl(175 70% 45% / 0.4);
+    --shadow-glow: 0 0 40px hsl(175 70% 50% / 0.4);
 
     --sidebar-background: 220 20% 10%;
     --sidebar-foreground: 210 15% 96%;

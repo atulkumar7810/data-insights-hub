@@ -81,7 +81,7 @@ const HeroSection = () => {
               transition={{ delay: 0.2 }}
               className="inline-block mb-6"
             >
-              <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent/10 backdrop-blur-md border border-accent/20 text-accent rounded-full text-sm font-medium">
+              <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-accent/20 backdrop-blur-md border border-accent/30 text-accent rounded-full text-sm font-semibold">
                 <Sparkles className="w-4 h-4" />
                 Data Analyst | Business Intelligence | MIS
               </span>
@@ -91,11 +91,11 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary-foreground mb-6 leading-[1.1]"
+              className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-hero-text mb-6 leading-[1.1]"
             >
               Hi, I'm{' '}
               <span className="relative inline-block">
-                <span className="text-gradient">Atul Kumar</span>
+                <span className="text-accent drop-shadow-lg">Atul Kumar</span>
                 <motion.span
                   className="absolute -bottom-2 left-0 w-full h-1.5 rounded-full"
                   style={{ background: 'var(--gradient-accent)' }}
@@ -110,7 +110,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-lg md:text-xl text-primary-foreground/90 mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed"
+              className="text-lg md:text-xl text-hero-text-muted mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed"
             >
               An entry-level Data Analyst skilled in SQL, Advanced Excel, Power BI, and Python. 
               Passionate about transforming raw data into actionable insights.
@@ -134,7 +134,7 @@ const HeroSection = () => {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-primary-foreground/20 bg-primary-foreground/5 backdrop-blur-sm text-primary-foreground hover:bg-primary-foreground/10 gap-2 transition-all duration-300 hover:-translate-y-0.5"
+                className="border-hero-text/30 bg-hero-text/10 backdrop-blur-sm text-hero-text hover:bg-hero-text/20 gap-2 transition-all duration-300 hover:-translate-y-0.5"
               >
                 <Download className="w-5 h-5" />
                 Download Resume
@@ -143,7 +143,7 @@ const HeroSection = () => {
                 size="lg"
                 variant="outline"
                 onClick={() => scrollToSection('#contact')}
-                className="border-primary-foreground/20 bg-primary-foreground/5 backdrop-blur-sm text-primary-foreground hover:bg-primary-foreground/10 gap-2 transition-all duration-300 hover:-translate-y-0.5"
+                className="border-hero-text/30 bg-hero-text/10 backdrop-blur-sm text-hero-text hover:bg-hero-text/20 gap-2 transition-all duration-300 hover:-translate-y-0.5"
               >
                 <Mail className="w-5 h-5" />
                 Contact Me
@@ -161,21 +161,21 @@ const HeroSection = () => {
                 href="https://github.com/atulkumar7810"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-primary-foreground/10 hover:bg-accent backdrop-blur-sm border border-primary-foreground/10 hover:border-accent rounded-xl transition-all duration-300 group"
+                className="p-3 bg-hero-text/10 hover:bg-accent backdrop-blur-sm border border-hero-text/20 hover:border-accent rounded-xl transition-all duration-300 group"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Github className="w-5 h-5 text-primary-foreground group-hover:text-accent-foreground transition-colors" />
+                <Github className="w-5 h-5 text-hero-text group-hover:text-accent-foreground transition-colors" />
               </motion.a>
               <motion.a
                 href="https://www.linkedin.com/in/atulkumar-s78/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-primary-foreground/10 hover:bg-accent backdrop-blur-sm border border-primary-foreground/10 hover:border-accent rounded-xl transition-all duration-300 group"
+                className="p-3 bg-hero-text/10 hover:bg-accent backdrop-blur-sm border border-hero-text/20 hover:border-accent rounded-xl transition-all duration-300 group"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Linkedin className="w-5 h-5 text-primary-foreground group-hover:text-accent-foreground transition-colors" />
+                <Linkedin className="w-5 h-5 text-hero-text group-hover:text-accent-foreground transition-colors" />
               </motion.a>
             </motion.div>
           </motion.div>
@@ -275,12 +275,12 @@ const HeroSection = () => {
                 transition={{ delay: 1 + index * 0.1 }}
                 className="relative group"
               >
-                <div className="card-glass-dark p-4 md:p-6 rounded-2xl text-center hover:bg-primary-foreground/10 transition-all duration-300">
+                <div className="card-glass-dark p-4 md:p-6 rounded-2xl text-center hover:bg-hero-text/10 transition-all duration-300">
                   <span className="text-2xl md:text-3xl mb-2 block">{stat.icon}</span>
-                  <div className="text-2xl md:text-4xl font-display font-bold text-primary-foreground mb-1">
+                  <div className="text-2xl md:text-4xl font-display font-bold text-hero-text mb-1">
                     {stat.value}
                   </div>
-                  <div className="text-xs md:text-sm text-primary-foreground/60">{stat.label}</div>
+                  <div className="text-xs md:text-sm text-hero-text-muted">{stat.label}</div>
                 </div>
               </motion.div>
             ))}
@@ -296,13 +296,13 @@ const HeroSection = () => {
         >
           <motion.button
             onClick={() => scrollToSection('#about')}
-            className="flex flex-col items-center gap-2 text-primary-foreground/60 hover:text-primary-foreground transition-colors group"
+            className="flex flex-col items-center gap-2 text-hero-text-muted hover:text-hero-text transition-colors group"
           >
             <span className="text-xs font-medium uppercase tracking-wider">Scroll Down</span>
             <motion.div
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
-              className="p-2 border border-primary-foreground/20 rounded-full group-hover:border-primary-foreground/40 transition-colors"
+              className="p-2 border border-hero-text/20 rounded-full group-hover:border-hero-text/40 transition-colors"
             >
               <ArrowDown className="w-4 h-4" />
             </motion.div>
