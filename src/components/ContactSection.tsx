@@ -42,7 +42,7 @@ const contactInfo = [
 ];
 
 const EMAILJS_SERVICE_ID = 'service_1njnomn';
-const EMAILJS_TEMPLATE_ID = 'template_dpposom';
+const EMAILJS_TEMPLATE_ID = 'template_am31oat';
 const EMAILJS_PUBLIC_KEY = '1FxKvIoUbpQKGLEBr';
 
 const ContactSection = () => {
