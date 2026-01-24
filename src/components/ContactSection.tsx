@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { MapPin, Mail, Phone, Linkedin, Github, Send, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from '@/hooks/use-toast';
+import emailjs from '@emailjs/browser';
 
 const contactInfo = [
   {
@@ -40,8 +41,13 @@ const contactInfo = [
   },
 ];
 
+const EMAILJS_SERVICE_ID = 'service_1njnomn';
+const EMAILJS_TEMPLATE_ID = 'template_dpposom';
+const EMAILJS_PUBLIC_KEY = '1FxKvIoUbpQKGLEBr';
+
 const ContactSection = () => {
   const ref = useRef(null);
+  const formRef = useRef<HTMLFormElement>(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -51,20 +57,42 @@ const ContactSection = () => {
     message: '',
   });
 
+  useEffect(() => {
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }
+      );
 
-    toast({
-      title: 'Message Sent!',
-      description: "Thank you for reaching out. I'll get back to you soon.",
-    });
+      toast({
+        title: 'Message Sent!',
+        description: "Thank you for reaching out. I'll get back to you soon.",
+      });
 
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    setIsSubmitting(false);
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      toast({
+        title: 'Failed to send message',
+        description: 'Please try again or contact me directly via email.',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
