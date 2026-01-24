@@ -2,107 +2,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { ExternalLink, Github, Filter, ArrowUpRight, Folder } from 'lucide-react';
-
-const projects = [
-  {
-    title: 'AtliQ Mart Sales Analysis',
-    description: 'Comprehensive FMCG sales analysis with 50,000+ records. Built interactive Power BI dashboards tracking KPIs, revenue trends, and product performance for management decision-making.',
-    tools: ['Power BI', 'Excel'],
-    domain: 'FMCG',
-    gradient: 'from-blue-600 via-blue-500 to-cyan-500',
-    outcomes: [
-      'Analyzed 50,000+ sales records',
-      'Built interactive KPI dashboards',
-      'Identified key revenue drivers',
-      'Created management reports',
-    ],
-    github: 'https://github.com/atulkumar7810/AtliQ_Mart-Analysis',
-    demo: 'https://atulkumar7810.github.io/my_portfolio_website/pages/Atliq_mart.html',
-    featured: true,
-  },
-  {
-    title: 'GoodCabs Performance Analysis',
-    description: 'Transportation analytics for tier-2 city cab service. Analyzed trip volumes, passenger satisfaction, and repeat rates to support 2024 growth targets and operational efficiency.',
-    tools: ['SQL', 'Power BI', 'Excel'],
-    domain: 'Transportation',
-    gradient: 'from-amber-500 via-orange-500 to-red-500',
-    outcomes: [
-      'Identified top cities (Pune, Nashik)',
-      'Analyzed revenue trends & peaks',
-      'Repeat passenger behavior insights',
-      'Actionable growth recommendations',
-    ],
-    github: 'https://github.com/atulkumar7810/GoodCabs-Analysis',
-    demo: 'https://atulkumar7810.github.io/my_portfolio_website/pages/GoodCabs_analysis.html',
-    featured: true,
-  },
-  {
-    title: 'Gurgaon Real Estate Analysis',
-    description: 'End-to-end data science project with web scraping, EDA, and ML. Built price prediction model achieving 92% accuracy and a Streamlit recommendation system.',
-    tools: ['Python', 'Scikit-learn', 'Streamlit'],
-    domain: 'Real Estate',
-    gradient: 'from-emerald-600 via-emerald-500 to-teal-500',
-    outcomes: [
-      'Scraped 3,000+ property records',
-      'Feature engineering & EDA',
-      '92% accuracy prediction model',
-      'Streamlit web app deployed',
-    ],
-    github: 'https://github.com/atulkumar7810/Gurgaon_Housing_Market_Analysis',
-    demo: 'https://atulkumar7810.github.io/my_portfolio_website/pages/Gurgoan_propert_analysis.html',
-    featured: true,
-  },
-  {
-    title: 'Quantium Virtual Internship',
-    description: 'Retail analytics project focusing on customer transaction analysis, uplift testing, and store layout optimization for data-driven marketing strategies.',
-    tools: ['SQL', 'Excel', 'Power BI'],
-    domain: 'Retail',
-    gradient: 'from-purple-600 via-purple-500 to-pink-500',
-    outcomes: [
-      'Customer transaction analysis',
-      'Automated Power BI reports',
-      'Uplift testing & A/B analysis',
-      'Store optimization insights',
-    ],
-    github: 'https://github.com/atulkumar7810',
-    demo: null,
-    featured: true,
-  },
-  {
-    title: 'Credit Risk Modeling',
-    description: 'Financial risk assessment model to evaluate creditworthiness and support lending decisions. Built classification models using Python and machine learning techniques.',
-    tools: ['Python', 'Jupyter'],
-    domain: 'Finance',
-    gradient: 'from-slate-600 via-slate-500 to-zinc-500',
-    outcomes: [
-      'Risk assessment pipeline',
-      'Feature importance analysis',
-      'Classification model built',
-      'Lending decision support',
-    ],
-    github: 'https://github.com/atulkumar7810/Credit-Risk-Modeling',
-    demo: null,
-    featured: false,
-  },
-  {
-    title: 'SMS Spam Classifier',
-    description: 'NLP-based spam detection system using machine learning. Built text classification model to automatically identify and filter spam messages from legitimate communications.',
-    tools: ['Python', 'NLP', 'Jupyter'],
-    domain: 'NLP',
-    gradient: 'from-rose-600 via-pink-500 to-fuchsia-500',
-    outcomes: [
-      'Text preprocessing pipeline',
-      'TF-IDF feature extraction',
-      'Classification model trained',
-      'High accuracy spam detection',
-    ],
-    github: 'https://github.com/atulkumar7810/SMS-Spam-Classifier',
-    demo: null,
-    featured: false,
-  },
-];
-
-const filters = ['All', 'SQL', 'Power BI', 'Python', 'FMCG', 'Real Estate', 'Retail', 'Transportation', 'Finance'];
+import { Link } from 'react-router-dom';
+import { projects, filters } from '@/data/projects';
 
 const ProjectsSection = () => {
   const ref = useRef(null);
@@ -229,25 +130,27 @@ const ProjectsSection = () => {
                     <motion.div
                       className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     >
-                      <motion.a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                      <motion.div
                         className="p-4 bg-white rounded-full shadow-xl"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.95 }}
                       >
-                        <ArrowUpRight className="w-6 h-6 text-foreground" />
-                      </motion.a>
+                        <Link to={`/project/${project.id}`}>
+                          <ArrowUpRight className="w-6 h-6 text-foreground" />
+                        </Link>
+                      </motion.div>
                     </motion.div>
                   </div>
 
                   {/* Project Content */}
                   <div className="p-6">
                     <div className="flex items-start justify-between mb-3">
-                      <h3 className="font-display text-xl font-semibold text-foreground group-hover:text-accent transition-colors">
+                      <Link 
+                        to={`/project/${project.id}`}
+                        className="font-display text-xl font-semibold text-foreground group-hover:text-accent transition-colors hover:underline"
+                      >
                         {project.title}
-                      </h3>
+                      </Link>
                       {project.featured && (
                         <span className="px-2.5 py-1 bg-accent/10 text-accent text-xs font-semibold rounded-lg shrink-0 ml-2">
                           Featured
