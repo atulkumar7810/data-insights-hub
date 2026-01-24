@@ -57,24 +57,27 @@ const ContactSection = () => {
     message: '',
   });
 
-  useEffect(() => {
-    emailjs.init(EMAILJS_PUBLIC_KEY);
-  }, []);
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
+      const templateParams = {
+        // Common EmailJS template variable names
+        from_name: formData.name,
+        name: formData.name,
+        from_email: formData.email,
+        email: formData.email,
+        reply_to: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      };
+
       await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-        }
+        templateParams,
+        EMAILJS_PUBLIC_KEY
       );
 
       toast({
