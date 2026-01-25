@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { GraduationCap, Award, Calendar, MapPin } from 'lucide-react';
+import { GraduationCap, Award, Calendar, MapPin, ExternalLink } from 'lucide-react';
 
 const educationData = [
   {
@@ -25,21 +25,25 @@ const certifications = [
     title: 'Google Data Analytics',
     issuer: 'Coursera',
     icon: '📊',
+    credentialUrl: 'https://www.coursera.org/account/accomplishments/professional-cert/google-data-analytics',
   },
   {
     title: 'Google Advanced Data Analytics',
     issuer: 'Coursera',
     icon: '📈',
+    credentialUrl: 'https://www.coursera.org/account/accomplishments/professional-cert/google-advanced-data-analytics',
   },
   {
     title: 'Microsoft Power BI Data Analyst',
     issuer: 'Coursera',
     icon: '📉',
+    credentialUrl: 'https://www.coursera.org/account/accomplishments/professional-cert/microsoft-power-bi',
   },
   {
     title: 'Advanced Data Science and AI',
     issuer: 'Skillslash Academy',
     icon: '🤖',
+    credentialUrl: 'https://skillslash.com/verify',
   },
 ];
 
@@ -147,18 +151,21 @@ const EducationSection = () => {
 
             <div className="grid sm:grid-cols-2 gap-4">
               {certifications.map((cert, index) => (
-                <motion.div
+                <motion.a
                   key={cert.title}
+                  href={cert.credentialUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.4 + index * 0.1 }}
-                  className="card-elevated p-5 rounded-xl group hover:shadow-lg hover:border-accent/30 transition-all duration-300 hover:-translate-y-1 cursor-default"
+                  className="card-elevated p-5 rounded-xl group hover:shadow-lg hover:border-accent/30 transition-all duration-300 hover:-translate-y-1 cursor-pointer block"
                 >
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center text-2xl group-hover:bg-accent/20 transition-colors shrink-0">
                       📜
                     </div>
-                    <div className="min-w-0">
+                    <div className="min-w-0 flex-1">
                       <h4 className="font-display text-base font-semibold text-foreground mb-1 leading-tight">
                         {cert.title}
                       </h4>
@@ -167,8 +174,13 @@ const EducationSection = () => {
                         {cert.issuer}
                       </p>
                     </div>
+                    <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-accent transition-colors shrink-0 mt-1" />
                   </div>
-                </motion.div>
+                  <div className="mt-3 flex items-center gap-1.5 text-xs text-accent font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span>Verify Credential</span>
+                    <ExternalLink className="w-3 h-3" />
+                  </div>
+                </motion.a>
               ))}
             </div>
 
