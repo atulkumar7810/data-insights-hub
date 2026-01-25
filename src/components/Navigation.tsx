@@ -15,8 +15,29 @@ const navLinks = [
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(() => {
+    // Check localStorage first, default to dark if no preference
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('theme');
+      if (saved) {
+        return saved === 'dark';
+      }
+    }
+    return true; // Default to dark mode
+  });
   const [activeSection, setActiveSection] = useState('home');
+
+  // Apply theme on mount and set dark class immediately
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      setIsDark(savedTheme === 'dark');
+    } else {
+      // No saved preference, default to dark
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,6 +66,7 @@ const Navigation = () => {
     } else {
       document.documentElement.classList.remove('dark');
     }
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
   }, [isDark]);
 
   const scrollToSection = (href: string) => {
