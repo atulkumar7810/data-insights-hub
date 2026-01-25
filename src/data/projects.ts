@@ -47,7 +47,7 @@ export const projects: Project[] = [
     ],
     conclusion: 'Optimizing supplier lead times and implementing AI forecasting can significantly improve fulfillment efficiency.',
     github: 'https://github.com/atulkumar7810/AtliQ_Mart-Analysis',
-    demo: 'atliq-mart-analysis/demo',
+    demo: '/project/atliq-mart-analysis/demo',
     powerBiEmbed: 'https://app.powerbi.com/view?r=eyJrIjoiMjc0OGQ2NDYtMTY2Zi00YTRhLTg2NDgtYjEzNjlkNjMyOTQwIiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9',
     images: [
       'https://atulkumar7810.github.io/my_portfolio_website/packages/images/portfolio%20project/AtliQ_Mart.png'
@@ -81,7 +81,7 @@ export const projects: Project[] = [
     ],
     conclusion: 'Targeted loyalty programs and dynamic pricing can enhance market performance.',
     github: 'https://github.com/atulkumar7810/GoodCabs-Analysis',
-    demo: 'goodcabs-analysis/demo',
+    demo: '/project/goodcabs-analysis/demo',
     powerBiEmbed: 'https://app.powerbi.com/view?r=eyJrIjoiNjA2ZTc5ZjgtZjNjZi00MjQ5LTg3OTQtY2YwNGUxZDIzM2Q3IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9',
     images: [
       'https://atulkumar7810.github.io/my_portfolio_website/packages/images/goodcabs_image/main_image.png'
@@ -155,7 +155,7 @@ export const projects: Project[] = [
     ],
     conclusion: 'Business Insight 360 empowers faster and data-driven executive decisions across the enterprise.',
     github: null,
-    demo: 'project/business-insight-360/demo',
+    demo: '/project/business-insight-360/demo',
     powerBiEmbed: 'https://app.powerbi.com/view?r=eyJrIjoiODY0NzEyNjctN2Q2Mi00ZTAyLWI0YmEtMjMyNjEyMDE5MjM3IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9&pageName=7e3b0a247184c220035e',
     images: [],
     featured: true,
