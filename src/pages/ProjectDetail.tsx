@@ -1,4 +1,4 @@
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Github, ExternalLink, CheckCircle2, Lightbulb, Target, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -9,7 +9,6 @@ import { useEffect } from 'react';
 
 const ProjectDetail = () => {
   const { projectId } = useParams<{ projectId: string }>();
-  const navigate = useNavigate();
   const project = projectId ? getProjectById(projectId) : undefined;
 
   useEffect(() => {
@@ -44,7 +43,6 @@ const ProjectDetail = () => {
       <main className="pt-24 pb-16">
         {/* Hero Section */}
         <section className={`relative overflow-hidden bg-gradient-to-br ${project.gradient} py-16 md:py-24`}>
-          {/* Background pattern */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute inset-0 dot-pattern" />
           </div>
@@ -55,7 +53,6 @@ const ProjectDetail = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              {/* Domain Badge */}
               <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm text-white text-sm font-semibold rounded-full mb-6">
                 {project.domain}
               </span>
@@ -68,7 +65,6 @@ const ProjectDetail = () => {
                 {project.fullDescription}
               </p>
               
-              {/* Tools */}
               <div className="flex flex-wrap gap-2 mb-8">
                 {project.tools.map((tool) => (
                   <span
@@ -79,25 +75,25 @@ const ProjectDetail = () => {
                   </span>
                 ))}
               </div>
-              
+
               {/* Action Buttons */}
               <div className="flex flex-wrap gap-4">
                 <Button
                   asChild
                   size="lg"
-                  className="bg-white text-foreground hover:bg-white/90 shadow-lg"
+                  className="bg-white text-black border border-black hover:bg-white/90 dark:bg-black dark:text-white dark:border-white"
                 >
                   <a href={project.github} target="_blank" rel="noopener noreferrer">
                     <Github className="w-5 h-5 mr-2" />
                     View Code
                   </a>
                 </Button>
+
                 {project.demo && (
                   <Button
                     asChild
                     size="lg"
-                    variant="outline"
-                    className="border-white/50 text-white hover:bg-white/10 backdrop-blur-sm"
+                    className="bg-black text-white border border-white hover:bg-black/90 dark:bg-white dark:text-black dark:border-black"
                   >
                     <a href={project.demo} target="_blank" rel="noopener noreferrer">
                       <ExternalLink className="w-5 h-5 mr-2" />
@@ -110,64 +106,65 @@ const ProjectDetail = () => {
           </div>
         </section>
 
-        {/* Power BI Embed Section */}
+        {/* Power BI Embed */}
         {project.powerBiEmbed && (
           <section className="py-12 md:py-16 bg-secondary/30">
             <div className="container-custom">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-              >
-                <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 flex items-center gap-3">
-                  <FileText className="w-7 h-7 text-accent" />
-                  Interactive Dashboard
-                </h2>
-                <div className="rounded-2xl overflow-hidden border border-border shadow-xl bg-card">
-                  <iframe
-                    title={`${project.title} Power BI Report`}
-                    src={project.powerBiEmbed}
-                    className="w-full aspect-[16/10] min-h-[500px] md:min-h-[600px]"
-                    allowFullScreen
-                  />
-                </div>
-              </motion.div>
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 flex items-center gap-3">
+                <FileText className="w-7 h-7 text-accent" />
+                Interactive Dashboard
+              </h2>
+              <div className="rounded-2xl overflow-hidden border border-border shadow-xl bg-card">
+                <iframe
+                  title={`${project.title} Power BI Report`}
+                  src={project.powerBiEmbed}
+                  className="w-full aspect-[16/10] min-h-[500px] md:min-h-[600px]"
+                  allowFullScreen
+                />
+              </div>
             </div>
           </section>
         )}
 
-        {/* Project Images */}
-        {project.images.length > 0 && !project.powerBiEmbed && (
+        {/* 🔥 LinkedIn Video ONLY for Gurgaon Project */}
+        {project.id === "gurgaon-real-estate" ? (
           <section className="py-12 md:py-16 bg-secondary/30">
             <div className="container-custom">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="space-y-6"
-              >
-                <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
-                  Project Preview
-                </h2>
-                <div className="grid gap-6">
-                  {project.images.map((image, index) => (
-                    <motion.div
-                      key={index}
-                      className="rounded-2xl overflow-hidden border border-border shadow-xl"
-                      whileHover={{ scale: 1.01 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <img
-                        src={image}
-                        alt={`${project.title} screenshot ${index + 1}`}
-                        className="w-full h-auto"
-                      />
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
+                Project Walkthrough
+              </h2>
+              <div className="rounded-2xl overflow-hidden border border-border shadow-xl bg-card flex justify-center">
+                <iframe
+                  src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7171496475602968576?compact=1"
+                  className="w-full max-w-3xl aspect-video"
+                  allowFullScreen
+                  title="Gurgaon Real Estate Project Demo"
+                />
+              </div>
+            </div>
+          </section>
+        ) : project.images.length > 0 && !project.powerBiEmbed && (
+          <section className="py-12 md:py-16 bg-secondary/30">
+            <div className="container-custom">
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
+                Project Preview
+              </h2>
+              <div className="grid gap-6">
+                {project.images.map((image, index) => (
+                  <motion.div
+                    key={index}
+                    className="rounded-2xl overflow-hidden border border-border shadow-xl"
+                    whileHover={{ scale: 1.01 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <img
+                      src={image}
+                      alt={`${project.title} screenshot ${index + 1}`}
+                      className="w-full h-auto"
+                    />
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </section>
         )}
@@ -177,129 +174,74 @@ const ProjectDetail = () => {
           <div className="container-custom">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
               {/* Key Outcomes */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="bg-card border border-border rounded-2xl p-6 md:p-8 shadow-lg"
-              >
+              <div className="bg-card border border-border rounded-2xl p-6 md:p-8 shadow-lg">
                 <h2 className="font-display text-xl md:text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
                   <Target className="w-6 h-6 text-accent" />
                   Key Outcomes
                 </h2>
                 <ul className="space-y-4">
                   {project.outcomes.map((outcome, index) => (
-                    <motion.li
-                      key={index}
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
-                      className="flex items-start gap-3"
-                    >
+                    <li key={index} className="flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" />
                       <span className="text-muted-foreground">{outcome}</span>
-                    </motion.li>
+                    </li>
                   ))}
                 </ul>
-              </motion.div>
+              </div>
 
               {/* Approach */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="bg-card border border-border rounded-2xl p-6 md:p-8 shadow-lg"
-              >
+              <div className="bg-card border border-border rounded-2xl p-6 md:p-8 shadow-lg">
                 <h2 className="font-display text-xl md:text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
                   <FileText className="w-6 h-6 text-accent" />
                   Approach
                 </h2>
                 <ul className="space-y-4">
                   {project.approach.map((step, index) => (
-                    <motion.li
-                      key={index}
-                      initial={{ opacity: 0, x: 10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
-                      className="flex items-start gap-3"
-                    >
+                    <li key={index} className="flex items-start gap-3">
                       <span className="w-6 h-6 rounded-full bg-accent/10 text-accent text-sm font-bold flex items-center justify-center shrink-0">
                         {index + 1}
                       </span>
                       <span className="text-muted-foreground">{step}</span>
-                    </motion.li>
+                    </li>
                   ))}
                 </ul>
-              </motion.div>
+              </div>
             </div>
 
             {/* Key Insights */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="mt-8 lg:mt-12 bg-card border border-border rounded-2xl p-6 md:p-8 shadow-lg"
-            >
+            <div className="mt-8 lg:mt-12 bg-card border border-border rounded-2xl p-6 md:p-8 shadow-lg">
               <h2 className="font-display text-xl md:text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
                 <Lightbulb className="w-6 h-6 text-accent" />
                 Key Insights
               </h2>
               <div className="grid md:grid-cols-2 gap-4">
                 {project.insights.map((insight, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.05 }}
-                    className="p-4 bg-secondary/50 rounded-xl border border-border/50"
-                  >
+                  <div key={index} className="p-4 bg-secondary/50 rounded-xl border border-border/50">
                     <p className="text-muted-foreground text-sm">{insight}</p>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
             {/* Conclusion */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="mt-8 lg:mt-12 bg-gradient-to-br from-accent/10 to-primary/10 border border-accent/20 rounded-2xl p-6 md:p-8"
-            >
+            <div className="mt-8 lg:mt-12 bg-gradient-to-br from-accent/10 to-primary/10 border border-accent/20 rounded-2xl p-6 md:p-8">
               <h2 className="font-display text-xl md:text-2xl font-bold text-foreground mb-4">
                 Conclusion & Recommendations
               </h2>
               <p className="text-muted-foreground leading-relaxed">
                 {project.conclusion}
               </p>
-            </motion.div>
+            </div>
 
-            {/* Back to Projects */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="mt-12 text-center"
-            >
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                className="group"
-              >
+            {/* Back */}
+            <div className="mt-12 text-center">
+              <Button asChild size="lg" variant="outline">
                 <Link to="/#projects">
-                  <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
+                  <ArrowLeft className="w-5 h-5 mr-2" />
                   Back to All Projects
                 </Link>
               </Button>
-            </motion.div>
+            </div>
           </div>
         </section>
       </main>

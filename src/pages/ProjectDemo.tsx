@@ -140,7 +140,7 @@ const ProjectDemo = () => {
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex flex-wrap gap-3">
+                {/* <div className="flex flex-wrap gap-3">
                   <Button
                     asChild
                     size="sm"
@@ -162,7 +162,41 @@ const ProjectDemo = () => {
                       Full Details
                     </Link>
                   </Button>
-                </div>
+                </div> */ 
+                <div className="flex flex-wrap gap-3">
+  {/* View Code - white */}
+  <Button
+    asChild
+    size="sm"
+    className="
+      bg-white text-black border border-black
+      hover:bg-white/90 shadow-lg
+      dark:bg-black dark:text-white dark:border-white
+    "
+  >
+    <a href={project.github} target="_blank" rel="noopener noreferrer">
+      <Github className="w-4 h-4 mr-2" />
+      View Code
+    </a>
+  </Button>
+
+  {/* Full Details - black */}
+  <Button
+    asChild
+    size="sm"
+    className="
+      bg-black text-white border border-white
+      hover:bg-black/90 shadow-lg
+      dark:bg-white dark:text-black dark:border-black
+    "
+  >
+    <Link to={`/project/${project.id}`}>
+      <ExternalLink className="w-4 h-4 mr-2" />
+      Full Details
+    </Link>
+  </Button>
+</div>
+}
               </div>
             </div>
 
