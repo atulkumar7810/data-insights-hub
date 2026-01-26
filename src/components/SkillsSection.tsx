@@ -77,14 +77,14 @@ const SkillsSection = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.15, duration: 0.5 }}
-          className="flex justify-center mb-14"
+          className="flex justify-center mb-10 md:mb-14 px-4"
         >
-          <div className="inline-flex items-center gap-1.5 p-1.5 bg-secondary/50 backdrop-blur-sm rounded-2xl border border-border/50">
+          <div className="inline-flex flex-wrap justify-center items-center gap-1.5 p-1.5 bg-secondary/50 backdrop-blur-sm rounded-2xl border border-border/50 max-w-full">
             {categories.map((category) => (
               <motion.button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`relative px-5 py-2.5 rounded-xl text-sm font-medium transition-colors duration-300 ${
+                className={`relative px-3 py-2 sm:px-5 sm:py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-colors duration-300 ${
                   activeCategory === category
                     ? 'text-accent-foreground'
                     : 'text-muted-foreground hover:text-foreground'
