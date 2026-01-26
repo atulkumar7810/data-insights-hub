@@ -44,15 +44,15 @@ const ExperienceSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
           <span className="inline-block px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium mb-4">
             Professional Journey
           </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
             Experience
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             My professional experience and hands-on project work in data analytics
           </p>
         </motion.div>
@@ -62,7 +62,7 @@ const ExperienceSection = () => {
           {/* Timeline line - hidden on mobile, visible on md+ */}
           <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent via-accent/50 to-transparent -translate-x-1/2" />
 
-          <div className="space-y-12">
+          <div className="space-y-8 md:space-y-12">
             {experienceData.map((exp, index) => (
               <motion.div
                 key={exp.role}
@@ -144,21 +144,21 @@ const ExperienceSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.8 }}
-          className="mt-16 text-center"
+          className="mt-12 md:mt-16 text-center"
         >
-          <p className="text-muted-foreground mb-4">
+          <p className="text-sm md:text-base text-muted-foreground mb-4">
             Interested in my work? Check out my projects or get in touch!
           </p>
-          <div className="flex justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-3 md:gap-4">
             <a
               href="#projects"
-              className="px-6 py-2.5 bg-accent text-accent-foreground font-medium rounded-lg hover:bg-accent/90 transition-colors"
+              className="px-5 py-2.5 md:px-6 md:py-2.5 bg-accent text-accent-foreground font-medium rounded-lg hover:bg-accent/90 transition-colors text-sm md:text-base min-h-[44px] flex items-center"
             >
               View Projects
             </a>
             <a
               href="#contact"
-              className="px-6 py-2.5 border border-accent/30 text-foreground font-medium rounded-lg hover:bg-accent/10 transition-colors"
+              className="px-5 py-2.5 md:px-6 md:py-2.5 border border-accent/30 text-foreground font-medium rounded-lg hover:bg-accent/10 transition-colors text-sm md:text-base min-h-[44px] flex items-center"
             >
               Contact Me
             </a>

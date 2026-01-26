@@ -52,14 +52,14 @@ const ProjectsSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.2 }}
-          className="flex flex-wrap justify-center items-center gap-2 mb-12"
+          className="flex flex-wrap justify-center items-center gap-2 mb-8 md:mb-12 px-2"
         >
-          <Filter className="w-4 h-4 text-muted-foreground mr-2" />
+          <Filter className="w-4 h-4 text-muted-foreground mr-1 md:mr-2 hidden sm:block" />
           {filters.map((filter) => (
             <motion.button
               key={filter}
               onClick={() => setActiveFilter(filter)}
-              className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
+              className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 min-h-[36px] ${
                 activeFilter === filter
                   ? 'bg-accent text-accent-foreground shadow-lg shadow-accent/25'
                   : 'bg-secondary text-muted-foreground hover:text-foreground hover:bg-secondary/80'
@@ -74,7 +74,7 @@ const ProjectsSection = () => {
 
         {/* Projects Grid - Using grid-rows for equal height */}
         <motion.div 
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr" 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 auto-rows-fr" 
           layout
         >
           <AnimatePresence mode="popLayout">

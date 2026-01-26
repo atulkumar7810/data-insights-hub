@@ -38,31 +38,31 @@ const AboutSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
           <span className="inline-block px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium mb-4">
             About Me
           </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
             Passionate About Data-Driven Insights
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             Transforming complex data into meaningful stories that drive business decisions
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h3 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
+            <h3 className="font-display text-xl md:text-2xl lg:text-3xl font-bold text-foreground mb-4 md:mb-6">
               Turning Data Into Decisions
             </h3>
             
-            <div className="space-y-4 text-muted-foreground">
+            <div className="space-y-3 md:space-y-4 text-sm md:text-base text-muted-foreground">
               <p>
                 I'm an entry-level Data Analyst with a strong foundation in SQL, Advanced Excel, 
                 Power BI, and Python. My journey in data analytics began with a passion for 

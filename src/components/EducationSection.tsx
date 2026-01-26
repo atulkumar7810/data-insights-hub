@@ -59,31 +59,31 @@ const EducationSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
           <span className="inline-block px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium mb-4">
             Education & Certifications
           </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
             Academic Background
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             My educational journey and professional certifications in data analytics
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
           {/* Education Timeline */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
-                <GraduationCap className="w-5 h-5 text-accent" />
+            <div className="flex items-center gap-3 mb-6 md:mb-8">
+              <div className="w-9 h-9 md:w-10 md:h-10 bg-accent/10 rounded-lg flex items-center justify-center">
+                <GraduationCap className="w-4 h-4 md:w-5 md:h-5 text-accent" />
               </div>
-              <h3 className="font-display text-2xl font-bold text-foreground">
+              <h3 className="font-display text-xl md:text-2xl font-bold text-foreground">
                 Education
               </h3>
             </div>
