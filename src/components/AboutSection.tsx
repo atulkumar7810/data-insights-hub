@@ -58,27 +58,18 @@ const AboutSection = () => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h3 className="font-display text-xl md:text-2xl lg:text-3xl font-bold text-foreground mb-4 md:mb-6">
-              Turning Data Into Decisions
-            </h3>
-            
-            <div className="space-y-3 md:space-y-4 text-sm md:text-base text-muted-foreground">
-              <p>
-                I'm an entry-level Data Analyst with a strong foundation in SQL, Advanced Excel, 
-                Power BI, and Python. My journey in data analytics began with a passion for 
-                uncovering patterns and trends that drive meaningful business outcomes.
-              </p>
-              <p>
-                With hands-on experience in data cleaning, exploratory data analysis, 
-                dashboard development, and business intelligence reporting, I've worked 
-                across diverse domains including FMCG, Real Estate, and Retail.
-              </p>
-              <p>
-                My goal is to grow as a Data Analyst and MIS professional, contributing 
-                to impactful business decisions through data-driven insights and compelling 
-                visualizations.
-              </p>
+            <div className="relative mb-4 md:mb-6">
+              <h3 className="font-display text-xl md:text-2xl lg:text-3xl font-bold text-foreground">
+                Turning Data Into Decisions
+              </h3>
+              <div className="mt-2 w-16 h-1 bg-gradient-to-r from-accent to-primary rounded-full" />
             </div>
+            
+            <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+              Entry-level Data Analyst skilled in SQL, Advanced Excel, Power BI, and Python. 
+              I turn raw data into actionable insights through clean analysis, smart dashboards, 
+              and business-focused storytelling.
+            </p>
 
             {/* CTA */}
             <motion.div
