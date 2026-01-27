@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { GraduationCap, Award, Calendar, MapPin, ExternalLink } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { GraduationCap, Award, Calendar, MapPin, ExternalLink, Copy, Check } from 'lucide-react';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 const educationData = [
   {
@@ -45,12 +46,25 @@ const certifications = [
     icon: '🤖',
     credentialUrl: 'https://skillslash.com/verify-certificate',
     certificateId: '397kzwy2q6u',
+    hasCopyAction: true,
   },
 ];
 
 const EducationSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  const handleCopyAndOpen = async (certificateId: string, verifyUrl: string) => {
+    try {
+      await navigator.clipboard.writeText(certificateId);
+      setCopiedId(certificateId);
+      window.open(verifyUrl, '_blank', 'noopener,noreferrer');
+      setTimeout(() => setCopiedId(null), 3000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  };
 
   return (
     <section id="education" className="section-padding bg-background" ref={ref}>
@@ -175,9 +189,33 @@ const EducationSection = () => {
                         {cert.issuer}
                       </p>
                       {'certificateId' in cert && cert.certificateId && (
-                        <p className="text-xs text-muted-foreground mt-1">
-                          ID: <span className="font-mono text-accent">{cert.certificateId}</span>
-                        </p>
+                        <TooltipProvider>
+                          <Tooltip open={copiedId === cert.certificateId}>
+                            <TooltipTrigger asChild>
+                              <button
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  handleCopyAndOpen(cert.certificateId!, cert.credentialUrl);
+                                }}
+                                className="flex items-center gap-1.5 text-xs text-muted-foreground mt-1 hover:text-accent transition-colors group/copy"
+                              >
+                                <span>ID:</span>
+                                <span className="font-mono text-accent underline decoration-dashed underline-offset-2 hover:decoration-solid">
+                                  {cert.certificateId}
+                                </span>
+                                {copiedId === cert.certificateId ? (
+                                  <Check className="w-3 h-3 text-accent" />
+                                ) : (
+                                  <Copy className="w-3 h-3 opacity-0 group-hover/copy:opacity-100 transition-opacity" />
+                                )}
+                              </button>
+                            </TooltipTrigger>
+                            <TooltipContent side="top" className="bg-accent text-accent-foreground border-accent">
+                              <p>Copied! Paste it on the verify page</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
                       )}
                     </div>
                     <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-accent transition-colors shrink-0 mt-1" />
