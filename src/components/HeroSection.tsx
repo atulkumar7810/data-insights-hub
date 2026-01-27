@@ -34,7 +34,7 @@ const HeroSection = () => {
       <div className="absolute inset-0 dot-pattern opacity-20" />
 
       <motion.div className="container-custom relative z-10 py-20 pt-24 md:py-28 md:pt-32" style={{ opacity }}>
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center justify-center">
+        <div className="flex flex-col lg:flex-row-reverse gap-8 lg:gap-12 items-center justify-center">
           
           {/* Modern Profile Card - Glassmorphism */}
           <motion.div
@@ -144,10 +144,10 @@ const HeroSection = () => {
 
           {/* Right side content */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-center lg:text-left max-w-lg"
+            className="text-center lg:text-right max-w-lg"
           >
             <motion.div
               initial={{ opacity: 0, y: 20 }}
