@@ -25,25 +25,26 @@ const certifications = [
     title: 'Google Data Analytics',
     issuer: 'Coursera',
     icon: '📊',
-    credentialUrl: 'https://www.coursera.org/account/accomplishments/professional-cert/google-data-analytics',
+    credentialUrl: 'https://www.coursera.org/account/accomplishments/professional-cert/F9MFBHMY6234',
   },
   {
     title: 'Google Advanced Data Analytics',
     issuer: 'Coursera',
     icon: '📈',
-    credentialUrl: 'https://www.coursera.org/account/accomplishments/professional-cert/google-advanced-data-analytics',
+    credentialUrl: 'https://www.coursera.org/account/accomplishments/professional-cert/5N03NTKGEDD3',
   },
   {
     title: 'Microsoft Power BI Data Analyst',
     issuer: 'Coursera',
     icon: '📉',
-    credentialUrl: 'https://www.coursera.org/account/accomplishments/professional-cert/microsoft-power-bi',
+    credentialUrl: 'https://www.coursera.org/account/accomplishments/professional-cert/BMQ511WM3JM5',
   },
   {
     title: 'Advanced Data Science and AI',
     issuer: 'Skillslash Academy',
     icon: '🤖',
-    credentialUrl: 'https://skillslash.com/verify',
+    credentialUrl: 'https://skillslash.com/verify-certificate',
+    certificateId: '397kzwy2q6u',
   },
 ];
 
@@ -173,11 +174,16 @@ const EducationSection = () => {
                         <span className="text-accent">{cert.icon}</span>
                         {cert.issuer}
                       </p>
+                      {'certificateId' in cert && cert.certificateId && (
+                        <p className="text-xs text-muted-foreground mt-1">
+                          ID: <span className="font-mono text-accent">{cert.certificateId}</span>
+                        </p>
+                      )}
                     </div>
                     <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-accent transition-colors shrink-0 mt-1" />
                   </div>
                   <div className="mt-3 flex items-center gap-1.5 text-xs text-accent font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span>Verify Credential</span>
+                    <span>Verify Certificate</span>
                     <ExternalLink className="w-3 h-3" />
                   </div>
                 </motion.a>
