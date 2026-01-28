@@ -59,6 +59,8 @@ export default {
         slate: "hsl(var(--slate))",
         "hero-text": "hsl(var(--hero-text))",
         "hero-text-muted": "hsl(var(--hero-text-muted))",
+        "profile-glow": "hsl(var(--profile-glow))",
+        "profile-glow-alt": "hsl(var(--profile-glow-alt))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

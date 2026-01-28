@@ -54,19 +54,22 @@ const HeroSection = () => {
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 className="relative z-10"
               >
-                {/* Profile Image */}
+                {/* Profile Image - Larger with prominent glow ring */}
                 <div className="flex justify-center mb-6">
                   <motion.div 
-                    className="relative w-28 h-28 md:w-32 md:h-32"
+                    className="relative w-36 h-36 md:w-44 md:h-44"
                     whileHover={{ scale: 1.05 }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
-                    <div className="absolute -inset-1 bg-gradient-to-r from-accent to-primary rounded-full blur opacity-60" />
-                    <div className="relative w-full h-full rounded-full overflow-hidden ring-4 ring-background/50">
+                    {/* Outer glow ring - profile glow gradient */}
+                    <div className="absolute -inset-2 bg-gradient-to-r from-profile-glow via-profile-glow-alt to-profile-glow rounded-full blur-md opacity-70 animate-pulse" />
+                    <div className="absolute -inset-1 bg-gradient-to-r from-profile-glow via-profile-glow-alt to-profile-glow rounded-full opacity-80" />
+                    {/* Inner image container */}
+                    <div className="relative w-full h-full rounded-full overflow-hidden ring-4 ring-profile-glow/60 shadow-2xl shadow-profile-glow/30">
                       <img src={profilePhoto} alt="Atul Kumar" className="w-full h-full object-cover" />
                     </div>
                     {/* Status indicator */}
-                    <div className="absolute bottom-1 right-1 w-5 h-5 bg-accent rounded-full border-2 border-background" />
+                    <div className="absolute bottom-2 right-2 w-5 h-5 bg-accent rounded-full border-2 border-background shadow-lg" />
                   </motion.div>
                 </div>
 
