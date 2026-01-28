@@ -34,72 +34,50 @@ const HeroSection = () => {
       <div className="absolute inset-0 dot-pattern opacity-20" />
 
       <motion.div className="container-custom relative z-10 py-20 pt-24 md:py-28 md:pt-32" style={{ opacity }}>
-        <div className="flex flex-col lg:flex-row-reverse gap-8 lg:gap-12 items-center justify-center">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center justify-center">
           
-          {/* Modern Profile Card - Glassmorphism */}
+          {/* LEFT SIDE - Content (stacked vertically) */}
           <motion.div
-            initial={{ opacity: 0, y: 30, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="w-full max-w-md"
+            className="w-full lg:w-1/2 order-2 lg:order-1"
           >
             <Card className="relative p-6 md:p-8 bg-card/30 backdrop-blur-2xl border-border/30 overflow-hidden group">
               {/* Gradient border glow */}
               <div className="absolute -inset-[1px] bg-gradient-to-r from-accent/50 via-primary/30 to-accent/50 rounded-xl opacity-60 group-hover:opacity-100 blur-sm transition-opacity duration-500" />
               <div className="absolute inset-0 bg-card/80 backdrop-blur-xl rounded-xl" />
               
-              {/* Floating animation wrapper */}
-              <motion.div
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="relative z-10"
-              >
-                {/* Profile Image - Larger with prominent glow ring */}
-                <div className="flex justify-center mb-6">
-                  <motion.div 
-                    className="relative w-36 h-36 md:w-44 md:h-44"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    {/* Outer glow ring - profile glow gradient */}
-                    <div className="absolute -inset-2 bg-gradient-to-r from-profile-glow via-profile-glow-alt to-profile-glow rounded-full blur-md opacity-70 animate-pulse" />
-                    <div className="absolute -inset-1 bg-gradient-to-r from-profile-glow via-profile-glow-alt to-profile-glow rounded-full opacity-80" />
-                    {/* Inner image container */}
-                    <div className="relative w-full h-full rounded-full overflow-hidden ring-4 ring-profile-glow/60 shadow-2xl shadow-profile-glow/30">
-                      <img src={profilePhoto} alt="Atul Kumar" className="w-full h-full object-cover" />
-                    </div>
-                    {/* Status indicator */}
-                    <div className="absolute bottom-2 right-2 w-5 h-5 bg-accent rounded-full border-2 border-background shadow-lg" />
-                  </motion.div>
-                </div>
+              <div className="relative z-10">
+                {/* Name */}
+                <h1 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-hero-text mb-3">
+                  Atul Kumar
+                </h1>
 
-                {/* Name & Role */}
-                <div className="text-center mb-4">
-                  <h1 className="font-display text-2xl md:text-3xl font-bold text-hero-text mb-2">
-                    Atul Kumar
-                  </h1>
-                  <div className="flex items-center justify-center gap-2 text-accent font-medium">
-                    <Briefcase className="w-4 h-4" />
-                    <span>Data Analyst</span>
-                  </div>
+                {/* Role */}
+                <div className="flex items-center gap-2 text-accent font-medium mb-2">
+                  <Briefcase className="w-4 h-4" />
+                  <span>Data Analyst</span>
                 </div>
 
                 {/* Location */}
-                <div className="flex items-center justify-center gap-1.5 text-hero-text-muted text-sm mb-4">
+                <div className="flex items-center gap-1.5 text-hero-text-muted text-sm mb-4">
                   <MapPin className="w-4 h-4" />
                   <span>India</span>
                 </div>
 
-                {/* Tagline with accent line */}
-                <div className="relative text-center mb-6">
-                  <div className="absolute left-1/2 -translate-x-1/2 -top-2 w-12 h-0.5 bg-gradient-to-r from-transparent via-accent to-transparent" />
-                  <p className="text-hero-text-muted text-sm md:text-base italic">
-                    "Turning data into business insights."
+                {/* Tagline / Description */}
+                <div className="relative mb-6">
+                  <div className="w-12 h-0.5 bg-gradient-to-r from-accent to-transparent mb-3" />
+                  <p className="text-hero-text-muted text-sm md:text-base leading-relaxed">
+                    Entry-level Data Analyst skilled in SQL, Advanced Excel, Power BI, and Python. 
+                    I turn raw data into actionable insights through clean analysis, smart dashboards, 
+                    and business-focused storytelling.
                   </p>
                 </div>
 
                 {/* Social Links */}
-                <div className="flex justify-center gap-3 mb-6">
+                <div className="flex gap-3 mb-6">
                   <motion.a 
                     href="https://github.com/atulkumar7810" 
                     target="_blank" 
@@ -126,12 +104,12 @@ const HeroSection = () => {
                 <div className="flex flex-col sm:flex-row gap-3">
                   <Button
                     onClick={() => scrollToSection('#projects')}
-                    className="flex-1 bg-accent hover:bg-accent/90 text-accent-foreground gap-2"
+                    className="bg-accent hover:bg-accent/90 text-accent-foreground gap-2"
                   >
                     <Eye className="w-4 h-4" />
                     View Projects
                   </Button>
-                  <a href="/Resume.pdf" download className="flex-1">
+                  <a href="/Resume.pdf" download>
                     <Button
                       variant="outline"
                       className="w-full border-hero-text/30 bg-hero-text/10 text-hero-text hover:bg-hero-text/20 gap-2"
@@ -141,45 +119,37 @@ const HeroSection = () => {
                     </Button>
                   </a>
                 </div>
-              </motion.div>
+              </div>
             </Card>
           </motion.div>
 
-          {/* Right side content */}
+          {/* RIGHT SIDE - Profile Image */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-center lg:text-right max-w-lg"
+            className="order-1 lg:order-2"
           >
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
-              <span className="inline-flex items-center gap-2 px-4 py-2 bg-accent/20 border border-accent/30 text-accent rounded-full text-xs sm:text-sm font-semibold mb-4">
-                Data Analyst | Business Intelligence | MIS
-              </span>
+              <motion.div 
+                className="relative w-40 h-40 md:w-52 md:h-52 lg:w-60 lg:h-60"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                {/* Outer glow ring - profile glow gradient */}
+                <div className="absolute -inset-3 bg-gradient-to-r from-profile-glow via-profile-glow-alt to-profile-glow rounded-full blur-lg opacity-60 animate-pulse" />
+                <div className="absolute -inset-1.5 bg-gradient-to-r from-profile-glow via-profile-glow-alt to-profile-glow rounded-full opacity-80" />
+                {/* Inner image container */}
+                <div className="relative w-full h-full rounded-full overflow-hidden ring-4 ring-profile-glow/60 shadow-2xl shadow-profile-glow/30">
+                  <img src={profilePhoto} alt="Atul Kumar" className="w-full h-full object-cover" />
+                </div>
+                {/* Status indicator */}
+                <div className="absolute bottom-3 right-3 w-6 h-6 bg-accent rounded-full border-3 border-background shadow-lg" />
+              </motion.div>
             </motion.div>
-
-            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-hero-text mb-4 leading-tight">
-              Transforming <span className="text-accent">Raw Data</span> Into Strategic Insights
-            </h2>
-
-            <p className="text-sm sm:text-base text-hero-text-muted mb-6 leading-relaxed">
-              Entry-level Data Analyst skilled in SQL, Advanced Excel, Power BI, and Python. 
-              I turn raw data into actionable insights through clean analysis, smart dashboards, 
-              and business-focused storytelling.
-            </p>
-
-            <Button
-              onClick={() => scrollToSection('#contact')}
-              variant="outline"
-              className="border-hero-text/30 bg-hero-text/10 text-hero-text hover:bg-hero-text/20 gap-2"
-            >
-              <Mail className="w-4 h-4" />
-              Get in Touch
-            </Button>
           </motion.div>
         </div>
 
