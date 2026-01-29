@@ -172,7 +172,7 @@
   }
 
   .card-elevated {
-    background: var(--gradient-card);
+    @apply bg-card border border-border rounded-xl;
     box-shadow: var(--shadow-md);
   }
 

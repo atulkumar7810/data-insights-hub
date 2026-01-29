@@ -128,7 +128,7 @@ const SkillsSection = () => {
                   layout: { type: 'spring', stiffness: 350, damping: 25 }
                 }}
               >
-                <Card className="group relative h-full p-5 md:p-6 bg-card/40 backdrop-blur-2xl border-border/30 hover:border-accent/50 hover:shadow-2xl hover:shadow-accent/10 transition-all duration-500 overflow-hidden rounded-2xl">
+                <Card className="group relative h-full p-5 md:p-6 bg-card border border-border hover:border-accent/50 hover:shadow-lg hover:shadow-accent/10 transition-all duration-500 overflow-hidden rounded-2xl">
                   {/* Glassmorphism gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   

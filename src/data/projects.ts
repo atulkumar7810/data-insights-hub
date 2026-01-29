@@ -159,7 +159,75 @@ export const projects: Project[] = [
     powerBiEmbed: 'https://app.powerbi.com/view?r=eyJrIjoiODY0NzEyNjctN2Q2Mi00ZTAyLWI0YmEtMjMyNjEyMDE5MjM3IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9&pageName=7e3b0a247184c220035e',
     images: [],
     featured: true,
-    showCode: false // ❌ Code button disabled ONLY here
+    showCode: false
+  },
+
+  {
+    id: 'placeholder-project-1',
+    title: 'Customer Churn Analysis',
+    description: 'Predictive modeling project analyzing customer behavior patterns to reduce churn rate in a subscription-based service.',
+    fullDescription: 'Comprehensive analysis of customer churn using machine learning techniques to identify at-risk customers and improve retention strategies.',
+    tools: ['Python', 'SQL', 'Power BI'],
+    domain: 'Business Intelligence',
+    gradient: 'from-violet-600 via-purple-500 to-indigo-500',
+    outcomes: [
+      'Analyzed 100,000+ customer records',
+      'Built predictive churn model with 85% accuracy',
+      'Identified top 5 churn drivers',
+      'Reduced churn by 15% through targeted campaigns'
+    ],
+    insights: [
+      'Customer engagement drops 30 days before churn',
+      'Price sensitivity highest in first 6 months',
+      'Support ticket volume correlates with churn risk'
+    ],
+    approach: [
+      'Data cleaning and feature engineering',
+      'Exploratory data analysis',
+      'Machine learning model development',
+      'Dashboard creation for monitoring'
+    ],
+    conclusion: 'Proactive customer engagement based on churn signals can significantly improve retention rates.',
+    github: 'https://github.com/atulkumar7810',
+    demo: null,
+    powerBiEmbed: null,
+    images: [],
+    featured: false,
+    showCode: true
+  },
+
+  {
+    id: 'placeholder-project-2',
+    title: 'Sales Performance Dashboard',
+    description: 'Interactive dashboard tracking key sales metrics, regional performance, and revenue trends for a retail company.',
+    fullDescription: 'End-to-end sales analytics solution providing real-time insights into sales performance across multiple regions and product categories.',
+    tools: ['Power BI', 'Excel', 'SQL'],
+    domain: 'Business Intelligence',
+    gradient: 'from-rose-600 via-pink-500 to-red-500',
+    outcomes: [
+      'Consolidated data from 5 regional databases',
+      'Created 12 interactive dashboard pages',
+      'Enabled real-time sales tracking',
+      'Improved reporting efficiency by 40%'
+    ],
+    insights: [
+      'Q4 consistently outperforms other quarters',
+      'Online sales growing at 25% YoY',
+      'Top 20% of products drive 80% of revenue'
+    ],
+    approach: [
+      'Data integration from multiple sources',
+      'Star schema data modeling',
+      'DAX measures for KPIs',
+      'Interactive visualizations'
+    ],
+    conclusion: 'Centralized dashboards enable faster decision-making and better sales strategy alignment.',
+    github: 'https://github.com/atulkumar7810',
+    demo: null,
+    powerBiEmbed: null,
+    images: [],
+    featured: false,
+    showCode: true
   }
 ];
 

@@ -4,11 +4,11 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-foreground text-background py-6">
+    <footer className="bg-card border-t border-border py-6">
       <div className="container-custom">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Copyright */}
-          <p className="text-xs text-background/60">
+          <p className="text-xs text-muted-foreground">
             © {currentYear} Atul Kumar. All rights reserved.
           </p>
 
@@ -18,7 +18,7 @@ const Footer = () => {
               href="https://github.com/atulkumar7810"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-background/60 hover:text-accent transition-colors"
+              className="p-2 text-muted-foreground hover:text-accent transition-colors"
               aria-label="GitHub"
             >
               <Github className="w-4 h-4" />
@@ -27,14 +27,14 @@ const Footer = () => {
               href="https://www.linkedin.com/in/atulkumar-s/"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-background/60 hover:text-accent transition-colors"
+              className="p-2 text-muted-foreground hover:text-accent transition-colors"
               aria-label="LinkedIn"
             >
               <Linkedin className="w-4 h-4" />
             </a>
             <a
               href="mailto:atulkumarsingh7810@gmail.com"
-              className="p-2 text-background/60 hover:text-accent transition-colors"
+              className="p-2 text-muted-foreground hover:text-accent transition-colors"
               aria-label="Email"
             >
               <Mail className="w-4 h-4" />
