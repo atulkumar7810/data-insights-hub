@@ -156,15 +156,20 @@ const HeroSection = () => {
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                {/* Outer glow ring - profile glow gradient */}
-                <div className="absolute -inset-3 bg-gradient-to-r from-profile-glow via-profile-glow-alt to-profile-glow rounded-full blur-lg opacity-50 animate-pulse" />
-                <div className="absolute -inset-1.5 bg-gradient-to-r from-profile-glow via-profile-glow-alt to-profile-glow rounded-full opacity-70" />
+                {/* Animated gradient border ring */}
+                <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-profile-glow via-accent to-profile-glow-alt opacity-75 blur-sm animate-spin" style={{ animationDuration: '6s' }} />
+                <div className="absolute -inset-0.5 rounded-full bg-gradient-to-r from-profile-glow via-profile-glow-alt to-accent opacity-90" style={{ animation: 'spin 4s linear infinite reverse' }} />
+                
+                {/* Outer glow effect */}
+                <div className="absolute -inset-3 bg-gradient-to-r from-profile-glow/30 via-accent/20 to-profile-glow-alt/30 rounded-full blur-xl opacity-60" />
+                
                 {/* Inner image container */}
-                <div className="relative w-full h-full rounded-full overflow-hidden ring-4 ring-profile-glow/50 shadow-2xl shadow-profile-glow/20">
+                <div className="relative w-full h-full rounded-full overflow-hidden ring-2 ring-background shadow-lg">
                   <img src={profilePhoto} alt="Atul Kumar" className="w-full h-full object-cover" />
                 </div>
+                
                 {/* Status indicator */}
-                <div className="absolute bottom-3 right-3 w-6 h-6 bg-accent rounded-full border-2 border-background shadow-lg" />
+                <div className="absolute bottom-3 right-3 w-5 h-5 bg-accent rounded-full border-2 border-background shadow-md" />
               </motion.div>
             </motion.div>
           </motion.div>
