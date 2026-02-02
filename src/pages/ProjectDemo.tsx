@@ -4,6 +4,7 @@ import { ArrowLeft, Github, ExternalLink, Folder, Target, Lightbulb } from 'luci
 import { Button } from '@/components/ui/button';
 import ProjectNavigation from '@/components/ProjectNavigation';
 import Footer from '@/components/Footer';
+import VideoPlaceholder from '@/components/VideoPlaceholder';
 import { getProjectById } from '@/data/projects';
 import { useEffect } from 'react';
 
@@ -278,6 +279,11 @@ const ProjectDemo = () => {
               </motion.div>
             </div>
           </motion.div>
+
+          {/* Video Placeholder Section */}
+          <div className="mt-8">
+            <VideoPlaceholder />
+          </div>
 
           {/* Navigation */}
           <motion.div

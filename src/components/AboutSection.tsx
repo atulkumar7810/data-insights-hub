@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { GraduationCap, Target, Briefcase, MapPin } from 'lucide-react';
+import { GraduationCap, Briefcase } from 'lucide-react';
 
 const highlights = [
   {
@@ -13,16 +13,6 @@ const highlights = [
     icon: Briefcase,
     title: 'Experience',
     description: 'Hands-on project experience across FMCG, Real Estate & Retail',
-  },
-  {
-    icon: Target,
-    title: 'Focus',
-    description: 'Data Analysis, Business Intelligence & MIS Reporting',
-  },
-  {
-    icon: MapPin,
-    title: 'Location',
-    description: 'Hyderabad, India',
   },
 ];
 
@@ -93,7 +83,7 @@ const AboutSection = () => {
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="grid sm:grid-cols-2 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-xl lg:max-w-none"
           >
             {highlights.map((item, index) => (
               <motion.div

@@ -70,17 +70,17 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
             )}
           </div>
 
-          {/* Hover overlay */}
+          {/* Hover overlay with arrow */}
           <motion.div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <motion.div
-              className="p-4 bg-white rounded-full shadow-xl"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Link to={`/project/${project.id}`}>
+            <Link to={`/project/${project.id}`}>
+              <motion.div
+                className="p-4 bg-white rounded-full shadow-xl flex items-center justify-center"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 <ArrowUpRight className="w-6 h-6 text-foreground" />
-              </Link>
-            </motion.div>
+              </motion.div>
+            </Link>
           </motion.div>
         </div>
 

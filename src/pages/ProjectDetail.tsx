@@ -4,6 +4,7 @@ import { ArrowLeft, Github, ExternalLink, CheckCircle2, Lightbulb, Target, FileT
 import { Button } from '@/components/ui/button';
 import ProjectNavigation from '@/components/ProjectNavigation';
 import Footer from '@/components/Footer';
+import VideoPlaceholder from '@/components/VideoPlaceholder';
 import { getProjectById } from '@/data/projects';
 import { useEffect } from 'react';
 
@@ -143,7 +144,7 @@ const ProjectDetail = () => {
               </div>
             </div>
           </section>
-        ) : project.images.length > 0 && !project.powerBiEmbed && (
+        ) : project.images.length > 0 && !project.powerBiEmbed ? (
           <section className="py-12 md:py-16 bg-secondary/30">
             <div className="container-custom">
               <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
@@ -167,6 +168,11 @@ const ProjectDetail = () => {
               </div>
             </div>
           </section>
+        ) : null}
+
+        {/* Video Placeholder Section - Show for all except Gurgaon which has real video */}
+        {project.id !== "gurgaon-real-estate" && (
+          <VideoPlaceholder />
         )}
 
         {/* Content Sections */}
