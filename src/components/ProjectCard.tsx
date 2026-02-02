@@ -49,7 +49,7 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
           />
 
           {/* Domain label */}
-          <div className="absolute top-4 left-4 px-3 py-1.5 bg-white/20 backdrop-blur-sm text-white text-xs font-semibold rounded-lg">
+          <div className="absolute top-4 left-4 px-3 py-1.5 bg-white/90 dark:bg-white/20 backdrop-blur-sm text-foreground dark:text-white text-xs font-semibold rounded-lg shadow-sm">
             {project.domain}
           </div>
 
@@ -58,27 +58,27 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
             {project.tools.slice(0, 3).map((tool) => (
               <span
                 key={tool}
-                className="px-2.5 py-1 bg-background/95 backdrop-blur-sm text-foreground text-xs font-medium rounded-lg shadow-lg"
+                className="px-2.5 py-1 bg-white dark:bg-card backdrop-blur-sm text-foreground text-xs font-medium rounded-lg shadow-lg border border-border/50"
               >
                 {tool}
               </span>
             ))}
             {project.tools.length > 3 && (
-              <span className="px-2.5 py-1 bg-background/95 backdrop-blur-sm text-foreground text-xs font-medium rounded-lg shadow-lg">
+              <span className="px-2.5 py-1 bg-white dark:bg-card backdrop-blur-sm text-foreground text-xs font-medium rounded-lg shadow-lg border border-border/50">
                 +{project.tools.length - 3}
               </span>
             )}
           </div>
 
           {/* Hover overlay with arrow */}
-          <motion.div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <motion.div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <Link to={`/project/${project.id}`}>
               <motion.div
-                className="p-4 bg-white rounded-full shadow-xl flex items-center justify-center"
+                className="p-4 bg-white dark:bg-accent rounded-full shadow-xl flex items-center justify-center"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <ArrowUpRight className="w-6 h-6 text-foreground" />
+                <ArrowUpRight className="w-6 h-6 text-foreground dark:text-accent-foreground" />
               </motion.div>
             </Link>
           </motion.div>
@@ -95,7 +95,7 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
               {project.title}
             </Link>
             {project.featured && (
-              <span className="px-2 py-1 bg-accent/10 text-accent text-xs font-semibold rounded-lg shrink-0">
+              <span className="px-2 py-1 bg-accent/20 dark:bg-accent/30 text-accent dark:text-accent text-xs font-semibold rounded-lg shrink-0 border border-accent/30">
                 Featured
               </span>
             )}
@@ -113,8 +113,8 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
             </h4>
             <ul className="space-y-1.5">
               {project.outcomes.slice(0, 3).map((outcome) => (
-                <li key={outcome} className="text-xs text-muted-foreground flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 bg-accent rounded-full shrink-0 mt-1.5" />
+                <li key={outcome} className="text-xs text-muted-foreground dark:text-muted-foreground flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 bg-accent dark:bg-accent rounded-full shrink-0 mt-1.5" />
                   <span className="line-clamp-1">{outcome}</span>
                 </li>
               ))}
@@ -129,7 +129,7 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-secondary hover:bg-secondary/80 text-foreground text-sm font-medium rounded-xl transition-colors"
+                className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-secondary hover:bg-secondary/80 text-foreground dark:text-foreground text-sm font-medium rounded-xl transition-colors border border-border/50"
               >
                 <Github className="w-4 h-4" />
                 Code
@@ -142,7 +142,7 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-accent hover:bg-accent/90 text-accent-foreground text-sm font-medium rounded-xl transition-colors"
+                className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-accent hover:bg-accent/90 text-white dark:text-accent-foreground text-sm font-medium rounded-xl transition-colors shadow-sm"
               >
                 <ExternalLink className="w-4 h-4" />
                 Demo
@@ -150,7 +150,7 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
             ) : project.powerBiEmbed || project.images.length > 0 ? (
               <Link
                 to={`/project/${project.id}/demo`}
-                className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-accent hover:bg-accent/90 text-accent-foreground text-sm font-medium rounded-xl transition-colors"
+                className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-accent hover:bg-accent/90 text-white dark:text-accent-foreground text-sm font-medium rounded-xl transition-colors shadow-sm"
               >
                 <ExternalLink className="w-4 h-4" />
                 Demo
