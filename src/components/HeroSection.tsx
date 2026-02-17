@@ -70,7 +70,7 @@ const HeroSection = () => {
               {/* Role */}
               <div className="flex items-center gap-2 text-accent font-medium text-lg mb-2">
                 <Briefcase className="w-5 h-5" />
-                <span>Data Analyst</span>
+                <span>Data Analyst | BI Analyst</span>
               </div>
 
               {/* Location */}
@@ -88,9 +88,9 @@ const HeroSection = () => {
                   "
                 </p>
                 <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-lg">
-                  Entry-level Data Analyst skilled in SQL, Advanced Excel, Power BI, and Python. 
-                  I turn raw data into actionable insights through clean analysis, smart dashboards, 
-                  and business-focused storytelling.
+                  Data Analyst with hands-on expertise in SQL, Power BI, Excel, and Python — backed by 
+                  multiple real-world analytics projects across FMCG, Retail, Real Estate, and Transportation. 
+                  I deliver actionable insights through clean analysis, interactive dashboards, and data-driven storytelling.
                 </p>
               </div>
 

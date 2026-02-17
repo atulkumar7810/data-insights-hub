@@ -243,10 +243,10 @@ const ContactSection = () => {
             Get In Touch
           </span>
           <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Let's Work Together
+            Let's Connect
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
-            Have a project in mind or want to discuss opportunities? I'd love to hear from you.
+            Open to <span className="text-accent font-medium">Data Analyst</span> and <span className="text-accent font-medium">BI Analyst</span> opportunities — let's discuss how I can add value to your team.
           </p>
         </motion.div>
 
@@ -261,8 +261,8 @@ const ContactSection = () => {
               Contact Information
             </h3>
             <p className="text-sm md:text-base text-muted-foreground mb-6 md:mb-8">
-              Feel free to reach out through any of these channels. I'm always open to discussing 
-              new projects, creative ideas, or opportunities to be part of your vision.
+              I'd love to hear from you — whether it's a job opportunity, a freelance project, 
+              or simply a conversation about data analytics. Let's connect and explore how I can contribute.
             </p>
 
             <div className="space-y-4 md:space-y-6">
