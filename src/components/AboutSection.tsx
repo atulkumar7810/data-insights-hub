@@ -34,10 +34,10 @@ const AboutSection = () => {
             About Me
           </span>
           <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Passionate About Data-Driven Insights
+            Who I Am
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
-            Transforming complex data into meaningful stories that drive business decisions
+            A results-driven analyst who turns raw data into clear, impactful business decisions
           </p>
         </motion.div>
 
@@ -50,15 +50,19 @@ const AboutSection = () => {
           >
             <div className="relative mb-4 md:mb-6">
               <h3 className="font-display text-xl md:text-2xl lg:text-3xl font-bold text-foreground">
-                Turning Data Into Decisions
+                Analyst by Skill, Storyteller by Approach
               </h3>
               <div className="mt-2 w-16 h-1 bg-gradient-to-r from-accent to-primary rounded-full" />
             </div>
             
+            <p className="text-sm md:text-base text-muted-foreground leading-relaxed mb-3">
+              I'm a Data Analyst with strong proficiency in SQL, Power BI, Advanced Excel, and Python. 
+              I specialize in transforming complex datasets into clean dashboards, automated reports, 
+              and strategic insights that help businesses make confident, data-backed decisions.
+            </p>
             <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-              Entry-level Data Analyst skilled in SQL, Advanced Excel, Power BI, and Python. 
-              I turn raw data into actionable insights through clean analysis, smart dashboards, 
-              and business-focused storytelling.
+              Currently seeking <span className="text-accent font-medium">Data Analyst / BI Analyst</span> opportunities 
+              where I can apply my analytical skills to solve real business problems and drive measurable outcomes.
             </p>
 
             {/* CTA */}
