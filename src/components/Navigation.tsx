@@ -17,14 +17,13 @@ const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDark, setIsDark] = useState(() => {
-    // Check localStorage first, default to light if no preference
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('theme');
       if (saved) {
         return saved === 'dark';
       }
     }
-    return false; // Default to light mode
+    return true; // Default to dark mode
   });
   const [activeSection, setActiveSection] = useState('home');
 
@@ -34,9 +33,8 @@ const Navigation = () => {
     if (savedTheme) {
       setIsDark(savedTheme === 'dark');
     } else {
-      // No saved preference, default to light
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
     }
   }, []);
 
