@@ -32,20 +32,30 @@ const experienceData = [
   },
 ];
 
+const sectionVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 0.1 } },
+};
+
+const itemUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" as const } },
+};
+
 const ExperienceSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const isInView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
     <section id="experience" className="section-padding bg-secondary/30" ref={ref}>
-      <div className="container-custom">
+      <motion.div
+        className="container-custom"
+        variants={sectionVariants}
+        initial="hidden"
+        animate={isInView ? 'visible' : 'hidden'}
+      >
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12 md:mb-16"
-        >
+        <motion.div variants={itemUp} className="text-center mb-12 md:mb-16">
           <span className="inline-block px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium mb-4">
             Professional Journey
           </span>
@@ -59,28 +69,43 @@ const ExperienceSection = () => {
 
         {/* Experience Timeline */}
         <div className="relative max-w-4xl mx-auto">
-          {/* Timeline line - hidden on mobile, visible on md+ */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent via-accent/50 to-transparent -translate-x-1/2" />
+          {/* Animated Timeline line */}
+          <motion.div
+            className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent via-accent/50 to-transparent -translate-x-1/2"
+            initial={{ scaleY: 0 }}
+            animate={isInView ? { scaleY: 1 } : {}}
+            transition={{ duration: 1.2, ease: "easeOut" }}
+            style={{ transformOrigin: 'top' }}
+          />
 
           <div className="space-y-8 md:space-y-12">
             {experienceData.map((exp, index) => (
               <motion.div
                 key={exp.role}
-                initial={{ opacity: 0, y: 40 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.2 + index * 0.2, duration: 0.6 }}
+                initial={{ opacity: 0, y: 50, x: index % 2 === 0 ? -30 : 30 }}
+                animate={isInView ? { opacity: 1, y: 0, x: 0 } : {}}
+                transition={{ delay: 0.3 + index * 0.25, duration: 0.8, ease: "easeOut" }}
                 className={`relative flex flex-col md:flex-row items-center gap-8 ${
                   index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                 }`}
               >
-                {/* Timeline dot - centered on md+ */}
-                <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-14 h-14 bg-background border-2 border-accent rounded-full items-center justify-center z-10 shadow-lg shadow-accent/20">
+                {/* Timeline dot */}
+                <motion.div
+                  className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-14 h-14 bg-background border-2 border-accent rounded-full items-center justify-center z-10 shadow-lg shadow-accent/20"
+                  initial={{ scale: 0 }}
+                  animate={isInView ? { scale: 1 } : {}}
+                  transition={{ delay: 0.5 + index * 0.25, type: 'spring', stiffness: 300 }}
+                >
                   <Briefcase className="w-6 h-6 text-accent" />
-                </div>
+                </motion.div>
 
                 {/* Content Card */}
                 <div className={`w-full md:w-[calc(50%-3rem)] ${index % 2 === 0 ? 'md:pr-4' : 'md:pl-4'}`}>
-                  <div className="card-elevated p-6 rounded-xl group hover:shadow-xl hover:border-accent/30 transition-all duration-300 hover:-translate-y-1">
+                  <motion.div
+                    className="card-elevated p-6 rounded-xl group hover:border-accent/30 transition-colors duration-500"
+                    whileHover={{ y: -4, boxShadow: '0 16px 40px -8px hsl(175 70% 50% / 0.12)' }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  >
                     {/* Header */}
                     <div className="flex items-start gap-4 mb-4">
                       <div className="md:hidden w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center shrink-0">
@@ -111,25 +136,32 @@ const ExperienceSection = () => {
                     {/* Responsibilities */}
                     <ul className="space-y-2 mb-4">
                       {exp.responsibilities.map((resp, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
+                        <motion.li
+                          key={i}
+                          className="flex items-start gap-2 text-sm text-muted-foreground"
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={isInView ? { opacity: 1, x: 0 } : {}}
+                          transition={{ delay: 0.6 + index * 0.25 + i * 0.08 }}
+                        >
                           <span className="w-1.5 h-1.5 bg-accent rounded-full mt-2 shrink-0" />
                           <span>{resp}</span>
-                        </li>
+                        </motion.li>
                       ))}
                     </ul>
 
                     {/* Tools/Skills Tags */}
                     <div className="flex flex-wrap gap-2">
                       {exp.tools.map((tool) => (
-                        <span
+                        <motion.span
                           key={tool}
                           className="px-3 py-1 bg-accent/5 border border-accent/20 text-accent text-xs font-medium rounded-full hover:bg-accent/10 transition-colors"
+                          whileHover={{ scale: 1.05 }}
                         >
                           {tool}
-                        </span>
+                        </motion.span>
                       ))}
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
 
                 {/* Spacer for alternating layout */}
@@ -140,31 +172,30 @@ const ExperienceSection = () => {
         </div>
 
         {/* Additional CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.8 }}
-          className="mt-12 md:mt-16 text-center"
-        >
+        <motion.div variants={itemUp} className="mt-12 md:mt-16 text-center">
           <p className="text-sm md:text-base text-muted-foreground mb-4">
             Interested in my work? Check out my projects or get in touch!
           </p>
           <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-            <a
+            <motion.a
               href="#projects"
-              className="px-5 py-2.5 md:px-6 md:py-2.5 bg-accent text-accent-foreground font-medium rounded-lg hover:bg-accent/90 transition-colors text-sm md:text-base min-h-[44px] flex items-center"
+              className="px-5 py-2.5 md:px-6 md:py-2.5 bg-accent text-accent-foreground font-medium rounded-lg hover:bg-accent/90 transition-colors text-sm md:text-base min-h-[44px] flex items-center shadow-lg shadow-accent/20"
+              whileHover={{ y: -2, scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
             >
               View Projects
-            </a>
-            <a
+            </motion.a>
+            <motion.a
               href="#contact"
               className="px-5 py-2.5 md:px-6 md:py-2.5 border border-accent/30 text-foreground font-medium rounded-lg hover:bg-accent/10 transition-colors text-sm md:text-base min-h-[44px] flex items-center"
+              whileHover={{ y: -2, scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
             >
               Contact Me
-            </a>
+            </motion.a>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 };

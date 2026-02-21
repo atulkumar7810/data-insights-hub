@@ -17,17 +17,21 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.9 }}
-      transition={{ delay: 0.1 * index, duration: 0.4 }}
+      transition={{ delay: 0.1 * index, duration: 0.5 }}
       onMouseEnter={() => onHover(project.title)}
       onMouseLeave={() => onHover(null)}
       className="group h-full"
     >
-      <div
-        className={`h-full flex flex-col rounded-2xl overflow-hidden bg-card border border-border transition-all duration-500 ${
-          isHovered
-            ? 'shadow-2xl shadow-accent/10 border-accent/30 -translate-y-2'
-            : 'hover:border-border/80'
+      <motion.div
+        className={`h-full flex flex-col rounded-2xl overflow-hidden bg-card border border-border transition-colors duration-500 ${
+          isHovered ? 'border-accent/30' : 'hover:border-border/80'
         }`}
+        whileHover={{
+          y: -6,
+          scale: 1.02,
+          boxShadow: '0 20px 40px -12px hsl(175 70% 50% / 0.15)',
+        }}
+        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       >
         {/* Project Header with Gradient */}
         <div className={`h-48 relative overflow-hidden bg-gradient-to-br ${project.gradient} shrink-0`}>
@@ -71,11 +75,16 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
           </div>
 
           {/* Hover overlay with arrow */}
-          <motion.div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <motion.div
+            className="absolute inset-0 bg-black/60 flex items-center justify-center"
+            initial={{ opacity: 0 }}
+            whileHover={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          >
             <Link to={`/project/${project.id}`}>
               <motion.div
                 className="p-4 bg-white dark:bg-accent rounded-full shadow-xl flex items-center justify-center"
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.15, rotate: 15 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <ArrowUpRight className="w-6 h-6 text-foreground dark:text-accent-foreground" />
@@ -90,14 +99,18 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
           <div className="flex items-start justify-between gap-2 mb-3">
             <Link
               to={`/project/${project.id}`}
-              className="font-display text-lg font-semibold text-foreground group-hover:text-accent transition-colors hover:underline line-clamp-1"
+              className="font-display text-lg font-semibold text-foreground group-hover:text-accent transition-colors duration-300 hover:underline line-clamp-1"
             >
               {project.title}
             </Link>
             {project.featured && (
-              <span className="px-2 py-1 bg-accent/20 dark:bg-accent/30 text-accent dark:text-accent text-xs font-semibold rounded-lg shrink-0 border border-accent/30">
+              <motion.span
+                className="px-2 py-1 bg-accent/20 dark:bg-accent/30 text-accent dark:text-accent text-xs font-semibold rounded-lg shrink-0 border border-accent/30"
+                animate={{ scale: [1, 1.05, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
                 Featured
-              </span>
+              </motion.span>
             )}
           </div>
 
@@ -123,42 +136,48 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
 
           {/* Links */}
           <div className="flex items-center gap-3 pt-4 border-t border-border mt-auto">
-            {/* CODE BUTTON – conditionally rendered */}
+            {/* CODE BUTTON */}
             {project.showCode !== false && (
-              <a
+              <motion.a
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-secondary hover:bg-secondary/80 text-foreground dark:text-foreground text-sm font-medium rounded-xl transition-colors border border-border/50"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.97 }}
               >
                 <Github className="w-4 h-4" />
                 Code
-              </a>
+              </motion.a>
             )}
 
             {/* DEMO BUTTON */}
             {project.demo ? (
-              <a
+              <motion.a
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-accent hover:bg-accent/90 text-white dark:text-accent-foreground text-sm font-medium rounded-xl transition-colors shadow-sm"
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.97 }}
               >
                 <ExternalLink className="w-4 h-4" />
                 Demo
-              </a>
+              </motion.a>
             ) : project.powerBiEmbed || project.images.length > 0 ? (
-              <Link
-                to={`/project/${project.id}/demo`}
-                className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-accent hover:bg-accent/90 text-white dark:text-accent-foreground text-sm font-medium rounded-xl transition-colors shadow-sm"
-              >
-                <ExternalLink className="w-4 h-4" />
-                Demo
-              </Link>
+              <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }} className="flex-1">
+                <Link
+                  to={`/project/${project.id}/demo`}
+                  className="flex items-center justify-center gap-2 py-2.5 bg-accent hover:bg-accent/90 text-white dark:text-accent-foreground text-sm font-medium rounded-xl transition-colors shadow-sm"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  Demo
+                </Link>
+              </motion.div>
             ) : null}
           </div>
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   );
 };
