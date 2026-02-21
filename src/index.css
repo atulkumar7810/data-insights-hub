@@ -142,11 +142,6 @@
   }
 
   html {
-    /* Default to light mode */
-    color-scheme: light;
-  }
-
-  html.dark {
     color-scheme: dark;
   }
 
