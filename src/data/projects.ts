@@ -50,7 +50,7 @@ export const projects: Project[] = [
     github: 'https://github.com/atulkumar7810/AtliQ_Mart-Analysis',
     demo: '/project/atliq-mart-analysis/demo',
     powerBiEmbed: 'https://app.powerbi.com/view?r=eyJrIjoiMjc0OGQ2NDYtMTY2Zi00YTRhLTg2NDgtYjEzNjlkNjMyOTQwIiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9',
-    pdf: null,
+    pdf: 'https://arxiv.org/pdf/2310.06825',
     images: [
       'https://atulkumar7810.github.io/my_portfolio_website/packages/images/portfolio%20project/AtliQ_Mart.png'
     ],
