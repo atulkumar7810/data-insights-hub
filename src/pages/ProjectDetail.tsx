@@ -1,10 +1,12 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Github, ExternalLink, CheckCircle2, Lightbulb, Target, FileText, BookOpen } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Lightbulb, Target, FileText, BookOpen, Play, Video } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ProjectNavigation from '@/components/ProjectNavigation';
 import Footer from '@/components/Footer';
-import VideoPlaceholder from '@/components/VideoPlaceholder';
+import ProjectDetailHero from '@/components/project-detail/ProjectDetailHero';
+import ImpactMetrics from '@/components/project-detail/ImpactMetrics';
+import CaseStudySection from '@/components/project-detail/CaseStudySection';
 import { getProjectById } from '@/data/projects';
 import { useEffect } from 'react';
 
@@ -40,242 +42,230 @@ const ProjectDetail = () => {
   return (
     <div className="min-h-screen bg-background">
       <ProjectNavigation />
-      
-      <main className="pt-24 pb-16">
-        {/* Hero Section */}
-        <section className={`relative overflow-hidden bg-gradient-to-br ${project.gradient} py-16 md:py-24`}>
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute inset-0 dot-pattern" />
-          </div>
-          
-          <div className="container-custom relative">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm text-white text-sm font-semibold rounded-full mb-6">
-                {project.domain}
-              </span>
-              
-              <h1 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                {project.title}
-              </h1>
-              
-              <p className="text-lg md:text-xl text-white/90 max-w-3xl mb-8">
-                {project.fullDescription}
-              </p>
-              
-              <div className="flex flex-wrap gap-2 mb-8">
-                {project.tools.map((tool) => (
-                  <span
-                    key={tool}
-                    className="px-4 py-2 bg-background/95 text-foreground text-sm font-medium rounded-xl shadow-lg"
-                  >
-                    {tool}
-                  </span>
-                ))}
-              </div>
 
-              {/* Action Buttons */}
-              <div className="flex flex-wrap gap-4">
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-white text-black border border-black hover:bg-white/90 dark:bg-black dark:text-white dark:border-white"
-                >
-                  <a href={project.github} target="_blank" rel="noopener noreferrer">
-                    <Github className="w-5 h-5 mr-2" />
-                    View Code
-                  </a>
-                </Button>
+      <main className="pt-20">
+        {/* Hero */}
+        <ProjectDetailHero project={project} />
 
-                {project.demo && (
-                  <Button
-                    asChild
-                    size="lg"
-                    className="bg-black text-white border border-white hover:bg-black/90 dark:bg-white dark:text-black dark:border-black"
-                  >
-                    <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="w-5 h-5 mr-2" />
-                      View Demo
-                    </a>
-                  </Button>
-                )}
-              </div>
-            </motion.div>
-          </div>
-        </section>
+        {/* Impact Metrics */}
+        <ImpactMetrics project={project} />
 
-        {/* Power BI Embed */}
+        {/* Power BI Dashboard */}
         {project.powerBiEmbed && (
-          <section className="py-12 md:py-16 bg-secondary/30">
-            <div className="container-custom">
-              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 flex items-center gap-3">
-                <FileText className="w-7 h-7 text-accent" />
-                Interactive Dashboard
-              </h2>
-              <div className="rounded-2xl overflow-hidden border border-border shadow-xl bg-card">
-                <iframe
-                  title={`${project.title} Power BI Report`}
-                  src={project.powerBiEmbed}
-                  className="w-full aspect-[16/10] min-h-[500px] md:min-h-[600px]"
-                  allowFullScreen
-                />
-              </div>
+          <CaseStudySection>
+            <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2 flex items-center gap-3">
+              <FileText className="w-7 h-7 text-accent" />
+              Interactive Dashboard
+            </h2>
+            <p className="text-muted-foreground mb-8 max-w-2xl">
+              Explore the live dashboard with interactive filters and drill-through capabilities.
+            </p>
+            <div className="rounded-2xl overflow-hidden border border-border/50 shadow-2xl bg-card backdrop-blur-sm">
+              <iframe
+                title={`${project.title} Power BI Report`}
+                src={project.powerBiEmbed}
+                className="w-full aspect-[16/10] min-h-[500px] md:min-h-[600px]"
+                allowFullScreen
+              />
             </div>
-          </section>
+          </CaseStudySection>
         )}
 
-        {/* 🔥 LinkedIn Video ONLY for Gurgaon Project */}
-        {project.id === "gurgaon-real-estate" ? (
-          <section className="py-12 md:py-16 bg-secondary/30">
-            <div className="container-custom">
-              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
-                Project Walkthrough
-              </h2>
-              <div className="rounded-2xl overflow-hidden border border-border shadow-xl bg-card flex justify-center">
-                <iframe
-                  src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7171496475602968576?compact=1"
-                  className="w-full max-w-3xl aspect-video"
-                  allowFullScreen
-                  title="Gurgaon Real Estate Project Demo"
-                />
-              </div>
+        {/* LinkedIn Video for Gurgaon OR Image Gallery */}
+        {project.id === 'gurgaon-real-estate' ? (
+          <CaseStudySection>
+            <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-8">
+              Project Walkthrough
+            </h2>
+            <div className="rounded-2xl overflow-hidden border border-border/50 shadow-2xl bg-card flex justify-center">
+              <iframe
+                src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7171496475602968576?compact=1"
+                className="w-full max-w-3xl aspect-video"
+                allowFullScreen
+                title="Gurgaon Real Estate Project Demo"
+              />
             </div>
-          </section>
+          </CaseStudySection>
         ) : project.images.length > 0 && !project.powerBiEmbed ? (
-          <section className="py-12 md:py-16 bg-secondary/30">
-            <div className="container-custom">
-              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
-                Project Preview
-              </h2>
-              <div className="grid gap-6">
-                {project.images.map((image, index) => (
-                  <motion.div
-                    key={index}
-                    className="rounded-2xl overflow-hidden border border-border shadow-xl"
-                    whileHover={{ scale: 1.01 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <img
-                      src={image}
-                      alt={`${project.title} screenshot ${index + 1}`}
-                      className="w-full h-auto"
-                    />
-                  </motion.div>
-                ))}
-              </div>
+          <CaseStudySection>
+            <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-8">
+              Project Preview
+            </h2>
+            <div className="grid gap-6">
+              {project.images.map((image, index) => (
+                <motion.div
+                  key={index}
+                  className="rounded-2xl overflow-hidden border border-border/50 shadow-xl"
+                  whileHover={{ scale: 1.01 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <img
+                    src={image}
+                    alt={`${project.title} screenshot ${index + 1}`}
+                    className="w-full h-auto"
+                  />
+                </motion.div>
+              ))}
             </div>
-          </section>
+          </CaseStudySection>
         ) : null}
 
-        {/* Video Placeholder Section - Show for all except Gurgaon which has real video */}
-        {project.id !== "gurgaon-real-estate" && (
-          <VideoPlaceholder />
-        )}
-
-        {/* PDF Documentation Section */}
-        {project.pdf && (
-          <motion.section
-            className="py-12 md:py-16 bg-secondary/30"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
-          >
-            <div className="container-custom">
-              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 flex items-center gap-3">
-                <BookOpen className="w-7 h-7 text-accent" />
-                Project Documentation
-              </h2>
-              <div className="rounded-2xl overflow-hidden border border-border shadow-xl bg-card">
-                <iframe
-                  title={`${project.title} Documentation`}
-                  src={project.pdf}
-                  className="w-full min-h-[600px] md:min-h-[750px]"
-                  allowFullScreen
-                />
-              </div>
-            </div>
-          </motion.section>
-        )}
-
-        {/* Content Sections */}
-        <section className="py-12 md:py-16">
-          <div className="container-custom">
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
-              {/* Key Outcomes */}
-              <div className="bg-card border border-border rounded-2xl p-6 md:p-8 shadow-lg">
-                <h2 className="font-display text-xl md:text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
-                  <Target className="w-6 h-6 text-accent" />
-                  Key Outcomes
-                </h2>
-                <ul className="space-y-4">
-                  {project.outcomes.map((outcome, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" />
-                      <span className="text-muted-foreground">{outcome}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Approach */}
-              <div className="bg-card border border-border rounded-2xl p-6 md:p-8 shadow-lg">
-                <h2 className="font-display text-xl md:text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
-                  <FileText className="w-6 h-6 text-accent" />
-                  Approach
-                </h2>
-                <ul className="space-y-4">
-                  {project.approach.map((step, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <span className="w-6 h-6 rounded-full bg-accent/10 text-accent text-sm font-bold flex items-center justify-center shrink-0">
-                        {index + 1}
-                      </span>
-                      <span className="text-muted-foreground">{step}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Key Insights */}
-            <div className="mt-8 lg:mt-12 bg-card border border-border rounded-2xl p-6 md:p-8 shadow-lg">
-              <h2 className="font-display text-xl md:text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
-                <Lightbulb className="w-6 h-6 text-accent" />
-                Key Insights
-              </h2>
-              <div className="grid md:grid-cols-2 gap-4">
-                {project.insights.map((insight, index) => (
-                  <div key={index} className="p-4 bg-secondary/50 rounded-xl border border-border/50">
-                    <p className="text-muted-foreground text-sm">{insight}</p>
+        {/* Walkthrough Video Placeholder (all except Gurgaon) */}
+        {project.id !== 'gurgaon-real-estate' && (
+          <CaseStudySection className="bg-secondary/20">
+            <div className="rounded-2xl border border-border/50 bg-card p-10 md:p-16 shadow-lg">
+              <div className="flex flex-col items-center text-center">
+                <div className="relative mb-6">
+                  <div className="w-20 h-20 rounded-full bg-accent/10 flex items-center justify-center">
+                    <Video className="w-9 h-9 text-accent" />
                   </div>
-                ))}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-accent/20 flex items-center justify-center backdrop-blur-sm">
+                      <Play className="w-4 h-4 text-accent ml-0.5" />
+                    </div>
+                  </div>
+                </div>
+                <h3 className="font-display text-xl md:text-2xl font-bold text-foreground mb-2">
+                  🎥 Project Walkthrough Video
+                </h3>
+                <p className="text-muted-foreground text-sm">Coming Soon</p>
+                <div className="mt-6 w-full max-w-md h-44 rounded-2xl border-2 border-dashed border-border/40 flex items-center justify-center bg-secondary/20">
+                  <div className="text-muted-foreground/40 text-sm flex flex-col items-center gap-2">
+                    <Play className="w-7 h-7" />
+                    <span>Video will appear here</span>
+                  </div>
+                </div>
               </div>
             </div>
+          </CaseStudySection>
+        )}
 
-            {/* Conclusion */}
-            <div className="mt-8 lg:mt-12 bg-gradient-to-br from-accent/10 to-primary/10 border border-accent/20 rounded-2xl p-6 md:p-8">
-              <h2 className="font-display text-xl md:text-2xl font-bold text-foreground mb-4">
+        {/* PDF Documentation */}
+        {project.pdf && (
+          <CaseStudySection>
+            <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2 flex items-center gap-3">
+              <BookOpen className="w-7 h-7 text-accent" />
+              Project Documentation
+            </h2>
+            <p className="text-muted-foreground mb-8 max-w-2xl">
+              Detailed documentation covering methodology, analysis, and findings.
+            </p>
+            <div className="rounded-2xl overflow-hidden border border-border/50 shadow-2xl bg-card">
+              <iframe
+                title={`${project.title} Documentation`}
+                src={project.pdf}
+                className="w-full min-h-[600px] md:min-h-[750px]"
+                allowFullScreen
+              />
+            </div>
+          </CaseStudySection>
+        )}
+
+        {/* Key Outcomes + Approach — 2-column grid */}
+        <CaseStudySection>
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Outcomes */}
+            <div className="rounded-2xl border border-border/50 bg-card p-8 shadow-lg">
+              <h2 className="font-display text-xl md:text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
+                <Target className="w-6 h-6 text-accent" />
+                Key Outcomes
+              </h2>
+              <ul className="space-y-4">
+                {project.outcomes.map((outcome, i) => (
+                  <motion.li
+                    key={i}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08 }}
+                    className="flex items-start gap-3 p-3 rounded-xl bg-secondary/40 border border-border/30"
+                  >
+                    <CheckCircle2 className="w-5 h-5 text-accent shrink-0 mt-0.5" />
+                    <span className="text-muted-foreground text-sm">{outcome}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Approach */}
+            <div className="rounded-2xl border border-border/50 bg-card p-8 shadow-lg">
+              <h2 className="font-display text-xl md:text-2xl font-bold text-foreground mb-6 flex items-center gap-3">
+                <FileText className="w-6 h-6 text-accent" />
+                Approach
+              </h2>
+              <ul className="space-y-4">
+                {project.approach.map((step, i) => (
+                  <motion.li
+                    key={i}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.08 }}
+                    className="flex items-start gap-3 p-3 rounded-xl bg-secondary/40 border border-border/30"
+                  >
+                    <span className="w-6 h-6 rounded-full bg-accent/15 text-accent text-xs font-bold flex items-center justify-center shrink-0">
+                      {i + 1}
+                    </span>
+                    <span className="text-muted-foreground text-sm">{step}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </CaseStudySection>
+
+        {/* Key Insights */}
+        <CaseStudySection className="bg-secondary/20">
+          <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-8 flex items-center gap-3">
+            <Lightbulb className="w-7 h-7 text-accent" />
+            Key Insights
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {project.insights.map((insight, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="relative overflow-hidden rounded-2xl border border-border/50 bg-card p-6 shadow-md"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent" />
+                <div className="relative z-10">
+                  <div className="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center mb-3">
+                    <Lightbulb className="w-4 h-4 text-accent" />
+                  </div>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{insight}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </CaseStudySection>
+
+        {/* Conclusion */}
+        <CaseStudySection>
+          <div className="relative overflow-hidden rounded-2xl border border-accent/20 p-10 md:p-14 backdrop-blur-sm">
+            <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-primary/5 to-transparent" />
+            <div className="relative z-10 max-w-3xl mx-auto text-center">
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6">
                 Conclusion & Recommendations
               </h2>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
                 {project.conclusion}
               </p>
             </div>
-
-            {/* Back */}
-            <div className="mt-12 text-center">
-              <Button asChild size="lg" variant="outline">
-                <Link to="/#projects">
-                  <ArrowLeft className="w-5 h-5 mr-2" />
-                  Back to All Projects
-                </Link>
-              </Button>
-            </div>
           </div>
-        </section>
+        </CaseStudySection>
+
+        {/* Back */}
+        <div className="pb-24 text-center">
+          <Button asChild size="lg" variant="outline" className="rounded-xl">
+            <Link to="/#projects">
+              <ArrowLeft className="w-5 h-5 mr-2" />
+              Back to All Projects
+            </Link>
+          </Button>
+        </div>
       </main>
 
       <Footer />
