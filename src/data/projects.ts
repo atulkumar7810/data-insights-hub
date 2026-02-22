@@ -13,9 +13,10 @@ export interface Project {
   github: string;
   demo: string | null;
   powerBiEmbed: string | null;
+  pdf: string | null;
   images: string[];
   featured: boolean;
-  showCode?: boolean; // 👈 NEW FIELD
+  showCode?: boolean;
 }
 
 export const projects: Project[] = [
@@ -49,6 +50,7 @@ export const projects: Project[] = [
     github: 'https://github.com/atulkumar7810/AtliQ_Mart-Analysis',
     demo: '/project/atliq-mart-analysis/demo',
     powerBiEmbed: 'https://app.powerbi.com/view?r=eyJrIjoiMjc0OGQ2NDYtMTY2Zi00YTRhLTg2NDgtYjEzNjlkNjMyOTQwIiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9',
+    pdf: null,
     images: [
       'https://atulkumar7810.github.io/my_portfolio_website/packages/images/portfolio%20project/AtliQ_Mart.png'
     ],
@@ -83,6 +85,7 @@ export const projects: Project[] = [
     github: 'https://github.com/atulkumar7810/GoodCabs-Analysis',
     demo: '/project/goodcabs-analysis/demo',
     powerBiEmbed: 'https://app.powerbi.com/view?r=eyJrIjoiNjA2ZTc5ZjgtZjNjZi00MjQ5LTg3OTQtY2YwNGUxZDIzM2Q3IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9',
+    pdf: null,
     images: [
       'https://atulkumar7810.github.io/my_portfolio_website/packages/images/goodcabs_image/main_image.png'
     ],
@@ -119,6 +122,7 @@ export const projects: Project[] = [
     github: 'https://github.com/atulkumar7810/Gurgaon_Housing_Market_Analysis',
     demo: 'https://gurgaonhousingmarketanalysis-lrucnaqwthf3lrubhanwxa.streamlit.app/',
     powerBiEmbed: null,
+    pdf: null,
     images: [
       'https://atulkumar7810.github.io/my_portfolio_website/packages/images/portfolio%20project/Gurgaon_analysis_report.jpg'
     ],
@@ -157,6 +161,7 @@ export const projects: Project[] = [
     github: null,
     demo: '/project/business-insight-360/demo',
     powerBiEmbed: 'https://app.powerbi.com/view?r=eyJrIjoiODY0NzEyNjctN2Q2Mi00ZTAyLWI0YmEtMjMyNjEyMDE5MjM3IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9&pageName=7e3b0a247184c220035e',
+    pdf: null,
     images: [],
     featured: true,
     showCode: false
@@ -191,6 +196,7 @@ export const projects: Project[] = [
     github: 'https://github.com/atulkumar7810',
     demo: null,
     powerBiEmbed: null,
+    pdf: null,
     images: [],
     featured: false,
     showCode: true
@@ -225,6 +231,7 @@ export const projects: Project[] = [
     github: 'https://github.com/atulkumar7810',
     demo: null,
     powerBiEmbed: null,
+    pdf: null,
     images: [],
     featured: false,
     showCode: true

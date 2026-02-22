@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Github, ExternalLink, CheckCircle2, Lightbulb, Target, FileText } from 'lucide-react';
+import { ArrowLeft, Github, ExternalLink, CheckCircle2, Lightbulb, Target, FileText, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ProjectNavigation from '@/components/ProjectNavigation';
 import Footer from '@/components/Footer';
@@ -173,6 +173,32 @@ const ProjectDetail = () => {
         {/* Video Placeholder Section - Show for all except Gurgaon which has real video */}
         {project.id !== "gurgaon-real-estate" && (
           <VideoPlaceholder />
+        )}
+
+        {/* PDF Documentation Section */}
+        {project.pdf && (
+          <motion.section
+            className="py-12 md:py-16 bg-secondary/30"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.7, ease: 'easeOut' }}
+          >
+            <div className="container-custom">
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-6 flex items-center gap-3">
+                <BookOpen className="w-7 h-7 text-accent" />
+                Project Documentation
+              </h2>
+              <div className="rounded-2xl overflow-hidden border border-border shadow-xl bg-card">
+                <iframe
+                  title={`${project.title} Documentation`}
+                  src={project.pdf}
+                  className="w-full min-h-[600px] md:min-h-[750px]"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          </motion.section>
         )}
 
         {/* Content Sections */}
