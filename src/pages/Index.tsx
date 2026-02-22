@@ -7,22 +7,25 @@ import EducationSection from '@/components/EducationSection';
 import ExperienceSection from '@/components/ExperienceSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
+import PageLoaderWrapper from '@/components/PageLoader';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
-      <main>
-        <HeroSection />
-        <AboutSection />
-        <ProjectsSection />
-        <SkillsSection />
-        <EducationSection />
-        <ExperienceSection />
-        <ContactSection />
-      </main>
-      <Footer />
-    </div>
+    <PageLoaderWrapper>
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <main>
+          <HeroSection />
+          <AboutSection />
+          <ProjectsSection />
+          <SkillsSection />
+          <EducationSection />
+          <ExperienceSection />
+          <ContactSection />
+        </main>
+        <Footer />
+      </div>
+    </PageLoaderWrapper>
   );
 };
 
