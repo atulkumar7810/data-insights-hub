@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Github, ExternalLink, ArrowUpRight } from 'lucide-react';
+import { Github, Eye, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import type { Project } from '@/data/projects';
 
@@ -151,30 +151,16 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
               </motion.a>
             )}
 
-            {/* DEMO BUTTON */}
-            {project.demo ? (
-              <motion.a
-                href={project.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-accent hover:bg-accent/90 text-white dark:text-accent-foreground text-sm font-medium rounded-xl transition-colors shadow-sm"
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.97 }}
+            {/* PREVIEW BUTTON */}
+            <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }} className="flex-1">
+              <Link
+                to={`/project/${project.id}`}
+                className="flex items-center justify-center gap-2 py-2.5 bg-accent hover:bg-accent/90 text-white dark:text-accent-foreground text-sm font-medium rounded-xl transition-colors shadow-sm"
               >
-                <ExternalLink className="w-4 h-4" />
-                Demo
-              </motion.a>
-            ) : project.powerBiEmbed || project.images.length > 0 ? (
-              <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }} className="flex-1">
-                <Link
-                  to={`/project/${project.id}/demo`}
-                  className="flex items-center justify-center gap-2 py-2.5 bg-accent hover:bg-accent/90 text-white dark:text-accent-foreground text-sm font-medium rounded-xl transition-colors shadow-sm"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  Demo
-                </Link>
-              </motion.div>
-            ) : null}
+                <Eye className="w-4 h-4" />
+                Preview
+              </Link>
+            </motion.div>
           </div>
         </div>
       </motion.div>
