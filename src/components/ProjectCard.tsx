@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Github, Eye, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import type { Project } from '@/data/projects';
+import { getDomainTheme } from '@/lib/domain-theme';
 
 interface ProjectCardProps {
   project: Project;
@@ -11,6 +12,8 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) => {
+  const theme = getDomainTheme(project.domain);
+
   return (
     <motion.div
       layout
@@ -23,19 +26,19 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
       className="group h-full"
     >
       <motion.div
-        className={`h-full flex flex-col rounded-2xl overflow-hidden bg-card border border-border transition-colors duration-500 ${
-          isHovered ? 'border-accent/30' : 'hover:border-border/80'
+        className={`h-full flex flex-col rounded-2xl overflow-hidden bg-card border transition-all duration-300 ${
+          isHovered ? theme.borderAccent : 'border-border hover:border-border/80'
         }`}
         whileHover={{
           y: -6,
           scale: 1.02,
-          boxShadow: '0 20px 40px -12px hsl(175 70% 50% / 0.15)',
         }}
+        style={isHovered ? { boxShadow: theme.glow } : {}}
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       >
-        {/* Project Header with Gradient */}
-        <div className={`h-48 relative overflow-hidden bg-gradient-to-br ${project.gradient} shrink-0`}>
-          {/* Animated pattern overlay */}
+        {/* Project Header with Category Gradient */}
+        <div className={`h-48 relative overflow-hidden bg-gradient-to-br ${theme.gradient} shrink-0`}>
+          {/* Pattern overlay */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute inset-0 dot-pattern" />
           </div>
@@ -74,7 +77,7 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
             )}
           </div>
 
-          {/* Hover overlay with arrow */}
+          {/* Hover overlay */}
           <motion.div
             className="absolute inset-0 bg-black/60 flex items-center justify-center"
             initial={{ opacity: 0 }}
@@ -83,11 +86,11 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
           >
             <Link to={`/project/${project.id}`}>
               <motion.div
-                className="p-4 bg-white dark:bg-accent rounded-full shadow-xl flex items-center justify-center"
+                className="p-4 bg-white dark:bg-white/20 backdrop-blur-sm rounded-full shadow-xl flex items-center justify-center"
                 whileHover={{ scale: 1.15, rotate: 15 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <ArrowUpRight className="w-6 h-6 text-foreground dark:text-accent-foreground" />
+                <ArrowUpRight className="w-6 h-6 text-foreground dark:text-white" />
               </motion.div>
             </Link>
           </motion.div>
@@ -95,17 +98,16 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
 
         {/* Project Content */}
         <div className="p-6 flex flex-col flex-1">
-          {/* Title and Featured Badge */}
           <div className="flex items-start justify-between gap-2 mb-3">
             <Link
               to={`/project/${project.id}`}
-              className="font-display text-lg font-semibold text-foreground group-hover:text-accent transition-colors duration-300 hover:underline line-clamp-1"
+              className={`font-display text-lg font-semibold text-foreground group-hover:${theme.accentText} transition-colors duration-300 hover:underline line-clamp-1`}
             >
               {project.title}
             </Link>
             {project.featured && (
               <motion.span
-                className="px-2 py-1 bg-accent/20 dark:bg-accent/30 text-accent dark:text-accent text-xs font-semibold rounded-lg shrink-0 border border-accent/30"
+                className={`px-2 py-1 ${theme.accentBg} ${theme.accentText} text-xs font-semibold rounded-lg shrink-0 border ${theme.borderAccent}`}
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
               >
@@ -114,7 +116,6 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
             )}
           </div>
 
-          {/* Description */}
           <p className="text-muted-foreground text-sm mb-4 leading-relaxed line-clamp-2 min-h-[2.5rem]">
             {project.description}
           </p>
@@ -126,8 +127,8 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
             </h4>
             <ul className="space-y-1.5">
               {project.outcomes.slice(0, 3).map((outcome) => (
-                <li key={outcome} className="text-xs text-muted-foreground dark:text-muted-foreground flex items-start gap-2">
-                  <span className="w-1.5 h-1.5 bg-accent dark:bg-accent rounded-full shrink-0 mt-1.5" />
+                <li key={outcome} className="text-xs text-muted-foreground flex items-start gap-2">
+                  <span className={`w-1.5 h-1.5 rounded-full shrink-0 mt-1.5 bg-gradient-to-r ${theme.gradient}`} />
                   <span className="line-clamp-1">{outcome}</span>
                 </li>
               ))}
@@ -136,14 +137,13 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
 
           {/* Links */}
           <div className="flex items-center gap-3 pt-4 border-t border-border mt-auto">
-            {/* CODE BUTTON */}
             {project.showCode !== false && (
               <motion.a
                 href={project.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-secondary hover:bg-secondary/80 text-foreground dark:text-foreground text-sm font-medium rounded-xl transition-colors border border-border/50"
-                whileHover={{ y: -2 }}
+                className="flex-1 flex items-center justify-center gap-2 py-2.5 bg-secondary hover:bg-secondary/80 text-foreground text-sm font-medium rounded-2xl transition-all duration-300 border border-border/50"
+                whileHover={{ y: -2, scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
               >
                 <Github className="w-4 h-4" />
@@ -151,11 +151,10 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
               </motion.a>
             )}
 
-            {/* PREVIEW BUTTON */}
-            <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.97 }} className="flex-1">
+            <motion.div whileHover={{ y: -2, scale: 1.02 }} whileTap={{ scale: 0.97 }} className="flex-1">
               <Link
                 to={`/project/${project.id}`}
-                className="flex items-center justify-center gap-2 py-2.5 bg-accent hover:bg-accent/90 text-white dark:text-accent-foreground text-sm font-medium rounded-xl transition-colors shadow-sm"
+                className={`flex items-center justify-center gap-2 py-2.5 bg-gradient-to-r ${theme.gradient} text-white text-sm font-medium rounded-2xl transition-all duration-300 shadow-sm`}
               >
                 <Eye className="w-4 h-4" />
                 Preview

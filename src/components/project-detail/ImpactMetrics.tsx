@@ -1,15 +1,12 @@
 import { motion } from 'framer-motion';
 import { TrendingUp, Clock, BarChart3 } from 'lucide-react';
 import { Project } from '@/data/projects';
+import { getDomainTheme } from '@/lib/domain-theme';
 
 interface Props {
   project: Project;
 }
 
-/**
- * Extracts up to 3 highlight metrics from project outcomes/insights.
- * Uses simple heuristics to find percentage or numeric values.
- */
 function extractMetrics(project: Project) {
   const allText = [...project.outcomes, ...project.insights];
   const metrics: { label: string; value: string; icon: React.ReactNode }[] = [];
@@ -21,7 +18,6 @@ function extractMetrics(project: Project) {
 
   for (const text of allText) {
     if (metrics.length >= 3) break;
-    // Match patterns like "29%", "50,000+", "90%", "3,000+"
     const match = text.match(/(\d[\d,.]*[+%]?%?)/);
     if (match) {
       metrics.push({
@@ -32,7 +28,6 @@ function extractMetrics(project: Project) {
     }
   }
 
-  // Fallback if we couldn't extract enough
   while (metrics.length < 3 && metrics.length < project.outcomes.length) {
     const outcome = project.outcomes[metrics.length];
     metrics.push({
@@ -47,6 +42,7 @@ function extractMetrics(project: Project) {
 
 const ImpactMetrics = ({ project }: Props) => {
   const metrics = extractMetrics(project);
+  const theme = getDomainTheme(project.domain);
 
   if (metrics.length === 0) return null;
 
@@ -67,12 +63,11 @@ const ImpactMetrics = ({ project }: Props) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`relative overflow-hidden rounded-2xl border border-border/50 bg-card p-8 shadow-lg`}
+              className={`relative overflow-hidden rounded-2xl border ${theme.borderAccent} bg-card p-8 shadow-lg`}
             >
-              {/* Subtle gradient overlay */}
-              <div className={`absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent`} />
+              <div className={`absolute inset-0 bg-gradient-to-br ${theme.gradient} opacity-[0.06]`} />
               <div className="relative z-10">
-                <div className="text-accent mb-4">{metric.icon}</div>
+                <div className={`${theme.accentText} mb-4`}>{metric.icon}</div>
                 <p className="font-display text-3xl md:text-4xl font-bold text-foreground mb-2">
                   {metric.value}
                 </p>
