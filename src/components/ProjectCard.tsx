@@ -36,8 +36,8 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
         style={isHovered ? { boxShadow: theme.glow } : {}}
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       >
-        {/* Project Header with Category Gradient */}
-        <div className={`h-48 relative overflow-hidden bg-gradient-to-br ${theme.gradient} shrink-0`}>
+        {/* Project Header with Project-specific Gradient */}
+        <div className={`h-48 relative overflow-hidden bg-gradient-to-br ${project.gradient} shrink-0`}>
           {/* Pattern overlay */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute inset-0 dot-pattern" />
@@ -128,7 +128,7 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
             <ul className="space-y-1.5">
               {project.outcomes.slice(0, 3).map((outcome) => (
                 <li key={outcome} className="text-xs text-muted-foreground flex items-start gap-2">
-                  <span className={`w-1.5 h-1.5 rounded-full shrink-0 mt-1.5 bg-gradient-to-r ${theme.gradient}`} />
+                  <span className={`w-1.5 h-1.5 rounded-full shrink-0 mt-1.5 bg-gradient-to-r ${project.gradient}`} />
                   <span className="line-clamp-1">{outcome}</span>
                 </li>
               ))}
@@ -154,7 +154,7 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
             <motion.div whileHover={{ y: -2, scale: 1.02 }} whileTap={{ scale: 0.97 }} className="flex-1">
               <Link
                 to={`/project/${project.id}`}
-                className={`flex items-center justify-center gap-2 py-2.5 bg-gradient-to-r ${theme.gradient} text-white text-sm font-medium rounded-2xl transition-all duration-300 shadow-sm`}
+                className={`flex items-center justify-center gap-2 py-2.5 bg-gradient-to-r ${project.gradient} text-white text-sm font-medium rounded-2xl transition-all duration-300 shadow-sm`}
               >
                 <Eye className="w-4 h-4" />
                 Preview

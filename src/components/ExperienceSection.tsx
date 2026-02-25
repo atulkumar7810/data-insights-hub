@@ -68,7 +68,7 @@ const ExperienceSection = () => {
         </motion.div>
 
         {/* Experience Timeline */}
-        <div className="relative max-w-4xl mx-auto">
+        <div className="relative max-w-4xl mx-auto px-4 md:px-0">
           {/* Animated Timeline line */}
           <motion.div
             className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent via-accent/50 to-transparent -translate-x-1/2"
@@ -78,31 +78,31 @@ const ExperienceSection = () => {
             style={{ transformOrigin: 'top' }}
           />
 
-          <div className="space-y-8 md:space-y-12">
+          <div className="space-y-8 md:space-y-16">
             {experienceData.map((exp, index) => (
               <motion.div
                 key={exp.role}
-                initial={{ opacity: 0, y: 50, x: index % 2 === 0 ? -30 : 30 }}
-                animate={isInView ? { opacity: 1, y: 0, x: 0 } : {}}
-                transition={{ delay: 0.3 + index * 0.25, duration: 0.8, ease: "easeOut" }}
-                className={`relative flex flex-col md:flex-row items-center gap-8 ${
+                initial={{ opacity: 0, y: 40 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.3 + index * 0.25, duration: 0.7, ease: "easeOut" }}
+                className={`relative flex flex-col md:flex-row items-stretch ${
                   index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                 }`}
               >
                 {/* Timeline dot */}
                 <motion.div
-                  className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-14 h-14 bg-background border-2 border-accent rounded-full items-center justify-center z-10 shadow-lg shadow-accent/20"
+                  className="hidden md:flex absolute left-1/2 -translate-x-1/2 top-6 w-12 h-12 bg-background border-2 border-accent rounded-full items-center justify-center z-10 shadow-lg shadow-accent/20"
                   initial={{ scale: 0 }}
                   animate={isInView ? { scale: 1 } : {}}
                   transition={{ delay: 0.5 + index * 0.25, type: 'spring', stiffness: 300 }}
                 >
-                  <Briefcase className="w-6 h-6 text-accent" />
+                  <Briefcase className="w-5 h-5 text-accent" />
                 </motion.div>
 
                 {/* Content Card */}
-                <div className={`w-full md:w-[calc(50%-3rem)] ${index % 2 === 0 ? 'md:pr-4' : 'md:pl-4'}`}>
+                <div className={`w-full md:w-[calc(50%-2rem)] ${index % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}`}>
                   <motion.div
-                    className="card-elevated p-6 rounded-xl group hover:border-accent/30 transition-colors duration-500"
+                    className="card-elevated p-6 rounded-2xl group hover:border-accent/30 transition-colors duration-500"
                     whileHover={{ y: -4, boxShadow: '0 16px 40px -8px hsl(175 70% 50% / 0.12)' }}
                     transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                   >
@@ -113,14 +113,14 @@ const ExperienceSection = () => {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <span className="px-2 py-0.5 bg-accent/10 text-accent text-xs font-medium rounded">
+                          <span className="px-2.5 py-0.5 bg-accent/10 text-accent text-xs font-medium rounded-full">
                             {exp.type}
                           </span>
                         </div>
                         <h3 className="font-display text-lg font-semibold text-foreground leading-tight">
                           {exp.role}
                         </h3>
-                        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-2 text-sm text-muted-foreground">
+                        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 text-sm text-muted-foreground">
                           <span className="flex items-center gap-1.5">
                             <Building2 className="w-4 h-4 text-accent" />
                             {exp.company}
@@ -134,11 +134,11 @@ const ExperienceSection = () => {
                     </div>
 
                     {/* Responsibilities */}
-                    <ul className="space-y-2 mb-4">
+                    <ul className="space-y-2.5 mb-5">
                       {exp.responsibilities.map((resp, i) => (
                         <motion.li
                           key={i}
-                          className="flex items-start gap-2 text-sm text-muted-foreground"
+                          className="flex items-start gap-2.5 text-sm text-muted-foreground leading-relaxed"
                           initial={{ opacity: 0, x: -10 }}
                           animate={isInView ? { opacity: 1, x: 0 } : {}}
                           transition={{ delay: 0.6 + index * 0.25 + i * 0.08 }}
@@ -163,9 +163,6 @@ const ExperienceSection = () => {
                     </div>
                   </motion.div>
                 </div>
-
-                {/* Spacer for alternating layout */}
-                <div className="hidden md:block w-[calc(50%-3rem)]" />
               </motion.div>
             ))}
           </div>
