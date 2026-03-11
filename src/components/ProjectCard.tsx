@@ -128,7 +128,7 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
             <ul className="space-y-1.5">
               {project.outcomes.slice(0, 3).map((outcome) => (
                 <li key={outcome} className="text-xs text-muted-foreground flex items-start gap-2">
-                  <span className={`w-1.5 h-1.5 rounded-full shrink-0 mt-1.5 bg-gradient-to-r ${project.gradient}`} />
+                  <span className={`w-1.5 h-1.5 rounded-full shrink-0 mt-1.5 bg-gradient-to-r ${theme.gradient}`} />
                   <span className="line-clamp-1">{outcome}</span>
                 </li>
               ))}
