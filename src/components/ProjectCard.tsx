@@ -36,8 +36,8 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
         style={isHovered ? { boxShadow: theme.glow } : {}}
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       >
-        {/* Project Header with Project-specific Gradient */}
-        <div className={`h-48 relative overflow-hidden bg-gradient-to-br ${project.gradient} shrink-0`}>
+        {/* Project Header with Domain-themed Gradient */}
+        <div className={`h-48 relative overflow-hidden bg-gradient-to-br ${theme.gradient} shrink-0`}>
           {/* Pattern overlay */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute inset-0 dot-pattern" />
