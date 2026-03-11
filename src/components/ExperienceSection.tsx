@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import { useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { Briefcase, Calendar, Building2 } from 'lucide-react';
 
 const experienceData = [
@@ -42,12 +42,71 @@ const itemUp = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" as const } },
 };
 
+/** Connector line from timeline icon toward its card */
+const ConnectorLine = ({ direction, isActive }: { direction: 'left' | 'right'; isActive: boolean }) => (
+  <div
+    className={`hidden md:block absolute top-10 h-0.5 w-8 ${
+      direction === 'left' ? 'right-full mr-0' : 'left-full ml-0'
+    }`}
+    style={{ top: '1.375rem' }}
+  >
+    <motion.div
+      className="h-full w-full rounded-full"
+      style={{
+        background: 'linear-gradient(90deg, hsl(var(--accent) / 0.6), hsl(var(--accent) / 0.1))',
+        transformOrigin: direction === 'left' ? 'right' : 'left',
+      }}
+      initial={{ scaleX: 0, opacity: 0 }}
+      animate={isActive ? { scaleX: 1, opacity: 1 } : { scaleX: 0, opacity: 0 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+    />
+  </div>
+);
+
 const ExperienceSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-80px' });
+  const sectionRef = useRef<HTMLElement>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, margin: '-80px' });
+  const [activeIndex, setActiveIndex] = useState<number>(-1);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Scroll-synced progress for the timeline line
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ['start 0.7', 'end 0.5'],
+  });
+
+  const progressHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%']);
+
+  // Detect which card is closest to viewport center
+  useEffect(() => {
+    const handleScroll = () => {
+      const center = window.innerHeight / 2;
+      let closest = -1;
+      let minDist = Infinity;
+
+      cardRefs.current.forEach((el, i) => {
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const cardCenter = rect.top + rect.height / 2;
+        const dist = Math.abs(cardCenter - center);
+        // Only highlight if card is reasonably in view
+        if (dist < minDist && rect.top < window.innerHeight * 0.75 && rect.bottom > window.innerHeight * 0.25) {
+          minDist = dist;
+          closest = i;
+        }
+      });
+
+      setActiveIndex(closest);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <section id="experience" className="section-padding bg-secondary/30" ref={ref}>
+    <section id="experience" className="section-padding bg-secondary/30" ref={sectionRef}>
       <motion.div
         className="container-custom"
         variants={sectionVariants}
@@ -68,103 +127,140 @@ const ExperienceSection = () => {
         </motion.div>
 
         {/* Experience Timeline */}
-        <div className="relative max-w-4xl mx-auto px-4 md:px-0">
-          {/* Animated Timeline line */}
+        <div className="relative max-w-4xl mx-auto px-4 md:px-0" ref={timelineRef}>
+          {/* Background timeline line (track) */}
+          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 bg-border/40" />
+
+          {/* Animated progress fill */}
           <motion.div
-            className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent via-accent/50 to-transparent -translate-x-1/2"
-            initial={{ scaleY: 0 }}
-            animate={isInView ? { scaleY: 1 } : {}}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-            style={{ transformOrigin: 'top' }}
+            className="hidden md:block absolute left-1/2 top-0 w-0.5 -translate-x-1/2 bg-gradient-to-b from-accent via-accent/80 to-accent/40"
+            style={{
+              height: progressHeight,
+              boxShadow: '0 0 12px hsl(var(--accent) / 0.5)',
+            }}
           />
 
           <div className="space-y-8 md:space-y-16">
-            {experienceData.map((exp, index) => (
-              <motion.div
-                key={exp.role}
-                initial={{ opacity: 0, y: 40 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.3 + index * 0.25, duration: 0.7, ease: "easeOut" }}
-                className={`relative flex flex-col md:flex-row items-stretch ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                }`}
-              >
-                {/* Timeline dot */}
+            {experienceData.map((exp, index) => {
+              const isActive = activeIndex === index;
+              const isLeft = index % 2 === 0;
+
+              return (
                 <motion.div
-                  className="hidden md:flex absolute left-1/2 -translate-x-1/2 top-6 w-12 h-12 bg-background border-2 border-accent rounded-full items-center justify-center z-10 shadow-lg shadow-accent/20"
-                  initial={{ scale: 0 }}
-                  animate={isInView ? { scale: 1 } : {}}
-                  transition={{ delay: 0.5 + index * 0.25, type: 'spring', stiffness: 300 }}
+                  key={exp.role}
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.3 + index * 0.25, duration: 0.7, ease: 'easeOut' }}
+                  className={`relative flex flex-col md:flex-row items-stretch ${
+                    isLeft ? 'md:flex-row' : 'md:flex-row-reverse'
+                  }`}
                 >
-                  <Briefcase className="w-5 h-5 text-accent" />
-                </motion.div>
+                  {/* Timeline dot — centered on the line */}
+                  <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 top-4 z-10">
+                    {/* Connector lines */}
+                    <ConnectorLine
+                      direction={isLeft ? 'left' : 'right'}
+                      isActive={isActive && isInView}
+                    />
+                    <motion.div
+                      className="w-12 h-12 bg-background border-2 border-accent rounded-full flex items-center justify-center shadow-lg"
+                      initial={{ scale: 0 }}
+                      animate={isInView ? { scale: 1 } : {}}
+                      transition={{ delay: 0.5 + index * 0.25, type: 'spring', stiffness: 300 }}
+                      style={{
+                        boxShadow: isActive
+                          ? '0 0 20px hsl(var(--accent) / 0.5), 0 0 40px hsl(var(--accent) / 0.2)'
+                          : '0 0 10px hsl(var(--accent) / 0.2)',
+                        transition: 'box-shadow 0.4s ease',
+                      }}
+                    >
+                      <Briefcase className="w-5 h-5 text-accent" />
+                    </motion.div>
+                  </div>
 
-                {/* Content Card */}
-                <div className={`w-full md:w-[calc(50%-2rem)] ${index % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}`}>
-                  <motion.div
-                    className="card-elevated p-6 rounded-2xl group hover:border-accent/30 transition-colors duration-500"
-                    whileHover={{ y: -4, boxShadow: '0 16px 40px -8px hsl(175 70% 50% / 0.12)' }}
-                    transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                  {/* Content Card */}
+                  <div
+                    className={`w-full md:w-[calc(50%-2rem)] ${
+                      isLeft ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'
+                    }`}
                   >
-                    {/* Header */}
-                    <div className="flex items-start gap-4 mb-4">
-                      <div className="md:hidden w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center shrink-0">
-                        <Briefcase className="w-5 h-5 text-accent" />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-1">
-                          <span className="px-2.5 py-0.5 bg-accent/10 text-accent text-xs font-medium rounded-full">
-                            {exp.type}
-                          </span>
+                    <motion.div
+                      ref={(el) => { cardRefs.current[index] = el; }}
+                      className="card-elevated p-6 rounded-2xl group transition-all duration-500"
+                      animate={
+                        isActive
+                          ? {
+                              scale: 1.02,
+                              boxShadow: '0 16px 48px -8px hsl(175 70% 50% / 0.18), 0 0 0 1px hsl(175 70% 50% / 0.25)',
+                            }
+                          : {
+                              scale: 1,
+                              boxShadow: 'var(--shadow-md)',
+                            }
+                      }
+                      transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                      whileHover={{ y: -4 }}
+                    >
+                      {/* Header */}
+                      <div className="flex items-start gap-4 mb-4">
+                        <div className="md:hidden w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center shrink-0">
+                          <Briefcase className="w-5 h-5 text-accent" />
                         </div>
-                        <h3 className="font-display text-lg font-semibold text-foreground leading-tight">
-                          {exp.role}
-                        </h3>
-                        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 text-sm text-muted-foreground">
-                          <span className="flex items-center gap-1.5">
-                            <Building2 className="w-4 h-4 text-accent" />
-                            {exp.company}
-                          </span>
-                          <span className="flex items-center gap-1.5">
-                            <Calendar className="w-4 h-4" />
-                            {exp.duration}
-                          </span>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="px-2.5 py-0.5 bg-accent/10 text-accent text-xs font-medium rounded-full">
+                              {exp.type}
+                            </span>
+                          </div>
+                          <h3 className="font-display text-lg font-semibold text-foreground leading-tight">
+                            {exp.role}
+                          </h3>
+                          <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-2 text-sm text-muted-foreground">
+                            <span className="flex items-center gap-1.5">
+                              <Building2 className="w-4 h-4 text-accent" />
+                              {exp.company}
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                              <Calendar className="w-4 h-4" />
+                              {exp.duration}
+                            </span>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    {/* Responsibilities */}
-                    <ul className="space-y-2.5 mb-5">
-                      {exp.responsibilities.map((resp, i) => (
-                        <motion.li
-                          key={i}
-                          className="flex items-start gap-2.5 text-sm text-muted-foreground leading-relaxed"
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={isInView ? { opacity: 1, x: 0 } : {}}
-                          transition={{ delay: 0.6 + index * 0.25 + i * 0.08 }}
-                        >
-                          <span className="w-1.5 h-1.5 bg-accent rounded-full mt-2 shrink-0" />
-                          <span>{resp}</span>
-                        </motion.li>
-                      ))}
-                    </ul>
+                      {/* Responsibilities */}
+                      <ul className="space-y-2.5 mb-5">
+                        {exp.responsibilities.map((resp, i) => (
+                          <motion.li
+                            key={i}
+                            className="flex items-start gap-2.5 text-sm text-muted-foreground leading-relaxed"
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={isInView ? { opacity: 1, x: 0 } : {}}
+                            transition={{ delay: 0.6 + index * 0.25 + i * 0.08 }}
+                          >
+                            <span className="w-1.5 h-1.5 bg-accent rounded-full mt-2 shrink-0" />
+                            <span>{resp}</span>
+                          </motion.li>
+                        ))}
+                      </ul>
 
-                    {/* Tools/Skills Tags */}
-                    <div className="flex flex-wrap gap-2">
-                      {exp.tools.map((tool) => (
-                        <motion.span
-                          key={tool}
-                          className="px-3 py-1 bg-accent/5 border border-accent/20 text-accent text-xs font-medium rounded-full hover:bg-accent/10 transition-colors"
-                          whileHover={{ scale: 1.05 }}
-                        >
-                          {tool}
-                        </motion.span>
-                      ))}
-                    </div>
-                  </motion.div>
-                </div>
-              </motion.div>
-            ))}
+                      {/* Tools/Skills Tags */}
+                      <div className="flex flex-wrap gap-2">
+                        {exp.tools.map((tool) => (
+                          <motion.span
+                            key={tool}
+                            className="px-3 py-1 bg-accent/5 border border-accent/20 text-accent text-xs font-medium rounded-full hover:bg-accent/10 transition-colors"
+                            whileHover={{ scale: 1.05 }}
+                          >
+                            {tool}
+                          </motion.span>
+                        ))}
+                      </div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
 
