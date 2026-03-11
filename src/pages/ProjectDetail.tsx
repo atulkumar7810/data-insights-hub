@@ -1,23 +1,36 @@
-import { useParams, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ArrowLeft, CheckCircle2, Lightbulb, Target, FileText, BookOpen, Play, Video } from 'lucide-react';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowLeft, CheckCircle2, Lightbulb, Target, FileText, Play, Video } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import ProjectNavigation from '@/components/ProjectNavigation';
 import Footer from '@/components/Footer';
 import ProjectDetailHero from '@/components/project-detail/ProjectDetailHero';
 import ImpactMetrics from '@/components/project-detail/ImpactMetrics';
 import CaseStudySection from '@/components/project-detail/CaseStudySection';
+import ProjectDocumentation from '@/components/project-detail/ProjectDocumentation';
+import ProjectDetailSkeleton from '@/components/project-detail/ProjectDetailSkeleton';
 import { getProjectById } from '@/data/projects';
 import { getDomainTheme } from '@/lib/domain-theme';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
+const pageVariants = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
+  exit: { opacity: 0, y: -10, transition: { duration: 0.3 } },
+};
 
 const ProjectDetail = () => {
   const { projectId } = useParams<{ projectId: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
   const project = projectId ? getProjectById(projectId) : undefined;
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setIsReady(false);
+    const timer = setTimeout(() => setIsReady(true), 150);
+    return () => clearTimeout(timer);
   }, [projectId]);
 
   if (!project) {
@@ -39,13 +52,31 @@ const ProjectDetail = () => {
     );
   }
 
+  if (!isReady) {
+    return (
+      <div className="min-h-screen bg-background">
+        <ProjectNavigation />
+        <main className="pt-20">
+          <ProjectDetailSkeleton />
+        </main>
+      </div>
+    );
+  }
+
   const theme = getDomainTheme(project.domain);
 
   return (
     <div className="min-h-screen bg-background">
       <ProjectNavigation />
 
-      <main className="pt-20">
+      <motion.main
+        key={projectId}
+        variants={pageVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        className="pt-20"
+      >
         <ProjectDetailHero project={project} />
         <ImpactMetrics project={project} />
 
@@ -135,24 +166,14 @@ const ProjectDetail = () => {
           </CaseStudySection>
         )}
 
-        {/* PDF Documentation */}
+        {/* PDF Documentation - Lazy Loaded */}
         {project.pdf && (
           <CaseStudySection>
-            <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground mb-2 flex items-center gap-3">
-              <BookOpen className={`w-7 h-7 ${theme.accentText}`} />
-              Project Documentation
-            </h2>
-            <p className="text-muted-foreground mb-8 max-w-2xl">
-              Detailed documentation covering methodology, analysis, and findings.
-            </p>
-            <div className={`rounded-2xl overflow-hidden border ${theme.borderAccent} shadow-2xl bg-card`}>
-              <iframe
-                title={`${project.title} Documentation`}
-                src={project.pdf}
-                className="w-full min-h-[600px] md:min-h-[750px]"
-                allowFullScreen
-              />
-            </div>
+            <ProjectDocumentation
+              title={project.title}
+              pdfUrl={project.pdf}
+              theme={theme}
+            />
           </CaseStudySection>
         )}
 
@@ -172,7 +193,7 @@ const ProjectDetail = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.08 }}
-                    className={`flex items-start gap-3 p-3 rounded-xl bg-secondary/40 border border-border/30`}
+                    className="flex items-start gap-3 p-3 rounded-xl bg-secondary/40 border border-border/30"
                   >
                     <CheckCircle2 className={`w-5 h-5 ${theme.accentText} shrink-0 mt-0.5`} />
                     <span className="text-muted-foreground text-sm">{outcome}</span>
@@ -264,7 +285,7 @@ const ProjectDetail = () => {
             </Button>
           </motion.div>
         </div>
-      </main>
+      </motion.main>
 
       <Footer />
     </div>
