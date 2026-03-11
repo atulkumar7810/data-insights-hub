@@ -65,7 +65,7 @@ const ProjectDetailHero = ({ project }: Props) => {
                 <Button
                   asChild
                   size="lg"
-                  className={`rounded-2xl bg-gradient-to-r ${theme.gradient} text-white border-0 shadow-lg hover:shadow-xl transition-shadow duration-300`}
+                  className={`rounded-2xl bg-gradient-to-r ${project.gradient} text-white border-0 shadow-lg hover:shadow-xl transition-shadow duration-300`}
                   style={{ boxShadow: theme.glow }}
                 >
                   <a href={project.github} target="_blank" rel="noopener noreferrer">
