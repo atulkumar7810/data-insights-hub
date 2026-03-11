@@ -17,12 +17,12 @@ const ProjectDetailHero = ({ project }: Props) => {
   return (
     <section className="relative overflow-hidden py-24 md:py-32">
       {/* Gradient background */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${theme.gradient} opacity-15`} />
+      <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-15`} />
       <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
 
       {/* Glow orbs */}
-      <div className={`absolute top-20 left-1/4 w-96 h-96 bg-gradient-to-br ${theme.gradient} opacity-10 blur-[120px] rounded-full`} />
-      <div className={`absolute bottom-10 right-1/4 w-72 h-72 bg-gradient-to-br ${theme.gradient} opacity-8 blur-[100px] rounded-full`} />
+      <div className={`absolute top-20 left-1/4 w-96 h-96 bg-gradient-to-br ${project.gradient} opacity-10 blur-[120px] rounded-full`} />
+      <div className={`absolute bottom-10 right-1/4 w-72 h-72 bg-gradient-to-br ${project.gradient} opacity-8 blur-[100px] rounded-full`} />
 
       <div className="container-custom relative z-10">
         <motion.div
