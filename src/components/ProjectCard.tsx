@@ -152,13 +152,25 @@ const ProjectCard = ({ project, index, isHovered, onHover }: ProjectCardProps) =
             )}
 
             <motion.div whileHover={{ y: -2, scale: 1.02 }} whileTap={{ scale: 0.97 }} className="flex-1">
-              <Link
-                to={`/project/${project.id}`}
-                className={`flex items-center justify-center gap-2 py-2.5 bg-gradient-to-r ${project.gradient} text-white text-sm font-medium rounded-2xl transition-all duration-300 shadow-sm`}
-              >
-                <Eye className="w-4 h-4" />
-                Preview
-              </Link>
+              {project.id === 'gurgaon-real-estate' ? (
+                <a
+                  href="https://gurgaonhousingmarketanalysis-lrucnaqwthf3lrubhanwxa.streamlit.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`flex items-center justify-center gap-2 py-2.5 bg-gradient-to-r ${project.gradient} text-white text-sm font-medium rounded-2xl transition-all duration-300 shadow-sm`}
+                >
+                  <Eye className="w-4 h-4" />
+                  Demo
+                </a>
+              ) : (
+                <Link
+                  to={`/project/${project.id}`}
+                  className={`flex items-center justify-center gap-2 py-2.5 bg-gradient-to-r ${project.gradient} text-white text-sm font-medium rounded-2xl transition-all duration-300 shadow-sm`}
+                >
+                  <Eye className="w-4 h-4" />
+                  Preview
+                </Link>
+              )}
             </motion.div>
           </div>
         </div>
