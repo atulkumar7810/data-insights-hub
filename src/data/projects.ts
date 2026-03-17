@@ -85,7 +85,7 @@ export const projects: Project[] = [
     github: 'https://github.com/atulkumar7810/GoodCabs-Analysis',
     demo: '/project/goodcabs-analysis/demo',
     powerBiEmbed: 'https://app.powerbi.com/view?r=eyJrIjoiNjA2ZTc5ZjgtZjNjZi00MjQ5LTg3OTQtY2YwNGUxZDIzM2Q3IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9',
-    pdf: null,
+    pdf: 'https://drive.google.com/uc?export=download&id=1ZX4R2pCscgffItTpKt0VIhNGcasFJZZb',
     images: [
       'https://atulkumar7810.github.io/my_portfolio_website/packages/images/goodcabs_image/main_image.png'
     ],
