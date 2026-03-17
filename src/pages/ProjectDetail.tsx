@@ -136,33 +136,52 @@ const ProjectDetail = () => {
           </CaseStudySection>
         ) : null}
 
-        {/* Walkthrough Video Placeholder */}
+        {/* Walkthrough Video / Embed */}
         {project.id !== 'gurgaon-real-estate' && (
           <CaseStudySection className="bg-secondary/20">
-            <div className={`rounded-2xl border ${theme.borderAccent} bg-card p-10 md:p-16 shadow-lg`}>
-              <div className="flex flex-col items-center text-center">
-                <div className="relative mb-6">
-                  <div className={`w-20 h-20 rounded-full ${theme.accentBg} flex items-center justify-center`}>
-                    <Video className={`w-9 h-9 ${theme.accentText}`} />
-                  </div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className={`w-10 h-10 rounded-full ${theme.accentBg} flex items-center justify-center backdrop-blur-sm`}>
-                      <Play className={`w-4 h-4 ${theme.accentText} ml-0.5`} />
-                    </div>
-                  </div>
-                </div>
-                <h3 className="font-display text-xl md:text-2xl font-bold text-foreground mb-2">
-                  🎥 Project Walkthrough Video
-                </h3>
-                <p className="text-muted-foreground text-sm">Coming Soon</p>
-                <div className={`mt-6 w-full max-w-md h-44 rounded-2xl border-2 border-dashed ${theme.borderAccent} flex items-center justify-center bg-secondary/20`}>
-                  <div className="text-muted-foreground/40 text-sm flex flex-col items-center gap-2">
-                    <Play className="w-7 h-7" />
-                    <span>Video will appear here</span>
+            {project.id === 'goodcabs-analysis' ? (
+              <div className={`rounded-2xl border ${theme.borderAccent} bg-card p-10 md:p-16 shadow-lg`}>
+                <div className="flex flex-col items-center text-center">
+                  <h3 className="font-display text-xl md:text-2xl font-bold text-foreground mb-6">
+                    🎥 Project Walkthrough Video
+                  </h3>
+                  <div className="w-full max-w-3xl aspect-video rounded-xl overflow-hidden">
+                    <iframe
+                      src="https://drive.google.com/file/d/1J7ytQg0TpvErHi2wxaw7H0SQpOcY03nw/preview"
+                      className="w-full h-full"
+                      allow="autoplay"
+                      allowFullScreen
+                      title="GoodCabs Project Walkthrough Video"
+                    />
                   </div>
                 </div>
               </div>
-            </div>
+            ) : (
+              <div className={`rounded-2xl border ${theme.borderAccent} bg-card p-10 md:p-16 shadow-lg`}>
+                <div className="flex flex-col items-center text-center">
+                  <div className="relative mb-6">
+                    <div className={`w-20 h-20 rounded-full ${theme.accentBg} flex items-center justify-center`}>
+                      <Video className={`w-9 h-9 ${theme.accentText}`} />
+                    </div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className={`w-10 h-10 rounded-full ${theme.accentBg} flex items-center justify-center backdrop-blur-sm`}>
+                        <Play className={`w-4 h-4 ${theme.accentText} ml-0.5`} />
+                      </div>
+                    </div>
+                  </div>
+                  <h3 className="font-display text-xl md:text-2xl font-bold text-foreground mb-2">
+                    🎥 Project Walkthrough Video
+                  </h3>
+                  <p className="text-muted-foreground text-sm">Coming Soon</p>
+                  <div className={`mt-6 w-full max-w-md h-44 rounded-2xl border-2 border-dashed ${theme.borderAccent} flex items-center justify-center bg-secondary/20`}>
+                    <div className="text-muted-foreground/40 text-sm flex flex-col items-center gap-2">
+                      <Play className="w-7 h-7" />
+                      <span>Video will appear here</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </CaseStudySection>
         )}
 
