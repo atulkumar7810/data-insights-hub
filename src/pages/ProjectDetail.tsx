@@ -140,20 +140,20 @@ const ProjectDetail = () => {
         {project.id !== 'gurgaon-real-estate' && (
           <CaseStudySection className="bg-secondary/20">
             {project.id === 'goodcabs-analysis' ? (
-              <div className={`rounded-2xl border ${theme.borderAccent} bg-card p-10 md:p-16 shadow-lg`}>
-                <div className="flex flex-col items-center text-center">
-                  <h3 className="font-display text-xl md:text-2xl font-bold text-foreground mb-6">
+              <div className={`rounded-2xl border ${theme.borderAccent} bg-card shadow-lg overflow-hidden`}>
+                <div className="px-10 pt-10 md:px-16 md:pt-12 text-center">
+                  <h3 className="font-display text-xl md:text-2xl font-bold text-foreground mb-0">
                     🎥 Project Walkthrough Video
                   </h3>
-                  <div className="w-full max-w-3xl aspect-video rounded-xl overflow-hidden">
-                    <iframe
-                      src="https://drive.google.com/file/d/1J7ytQg0TpvErHi2wxaw7H0SQpOcY03nw/preview"
-                      className="w-full h-full"
-                      allow="autoplay"
-                      allowFullScreen
-                      title="GoodCabs Project Walkthrough Video"
-                    />
-                  </div>
+                </div>
+                <div className="relative w-full mt-6" style={{ paddingBottom: '56.25%' }}>
+                  <iframe
+                    src="https://drive.google.com/file/d/1J7ytQg0TpvErHi2wxaw7H0SQpOcY03nw/preview"
+                    className="absolute inset-0 w-full h-full border-0"
+                    allow="autoplay"
+                    allowFullScreen
+                    title="GoodCabs Project Walkthrough Video"
+                  />
                 </div>
               </div>
             ) : (
