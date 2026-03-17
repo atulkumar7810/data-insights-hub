@@ -141,18 +141,19 @@ const ProjectDetail = () => {
           <CaseStudySection className="bg-secondary/20">
             {project.id === 'goodcabs-analysis' ? (
               <div className={`rounded-2xl border ${theme.borderAccent} bg-card shadow-lg overflow-hidden`}>
-                <div className="px-10 pt-10 md:px-16 md:pt-12 text-center">
-                  <h3 className="font-display text-xl md:text-2xl font-bold text-foreground mb-0">
+                <div className="px-6 pt-6 md:px-10 md:pt-8 text-center">
+                  <h3 className="font-display text-xl md:text-2xl font-bold text-foreground">
                     🎥 Project Walkthrough Video
                   </h3>
                 </div>
-                <div className="relative w-full mt-6" style={{ paddingBottom: '56.25%' }}>
+                <div className="w-full aspect-video mt-4">
                   <iframe
                     src="https://drive.google.com/file/d/1J7ytQg0TpvErHi2wxaw7H0SQpOcY03nw/preview"
-                    className="absolute inset-0 w-full h-full border-0"
-                    allow="autoplay"
+                    className="w-full h-full border-0"
+                    allow="autoplay; encrypted-media"
                     allowFullScreen
                     title="GoodCabs Project Walkthrough Video"
+                    style={{ display: 'block' }}
                   />
                 </div>
               </div>
