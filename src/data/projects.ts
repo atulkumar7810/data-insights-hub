@@ -85,7 +85,7 @@ export const projects: Project[] = [
     github: 'https://github.com/atulkumar7810/GoodCabs-Analysis',
     demo: '/project/goodcabs-analysis/demo',
     powerBiEmbed: 'https://app.powerbi.com/view?r=eyJrIjoiNjA2ZTc5ZjgtZjNjZi00MjQ5LTg3OTQtY2YwNGUxZDIzM2Q3IiwidCI6ImRmODY3OWNkLWE4MGUtNDVkOC05OWFjLWM4M2VkN2ZmOTVhMCJ9',
-    pdf: null,
+    pdf: 'https://drive.google.com/uc?export=download&id=1ZX4R2pCscgffItTpKt0VIhNGcasFJZZb',
     images: [
       'https://atulkumar7810.github.io/my_portfolio_website/packages/images/goodcabs_image/main_image.png'
     ],
@@ -122,7 +122,7 @@ export const projects: Project[] = [
     github: 'https://github.com/atulkumar7810/Gurgaon_Housing_Market_Analysis',
     demo: 'https://gurgaonhousingmarketanalysis-lrucnaqwthf3lrubhanwxa.streamlit.app/',
     powerBiEmbed: null,
-    pdf: null,
+    pdf: 'https://drive.google.com/uc?export=download&id=1aRbaSuPFwfgSVl0ti2Jc6lk2Ms_Heamn',
     images: [
       'https://atulkumar7810.github.io/my_portfolio_website/packages/images/portfolio%20project/Gurgaon_analysis_report.jpg'
     ],
