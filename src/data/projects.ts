@@ -122,7 +122,7 @@ export const projects: Project[] = [
     github: 'https://github.com/atulkumar7810/Gurgaon_Housing_Market_Analysis',
     demo: 'https://gurgaonhousingmarketanalysis-lrucnaqwthf3lrubhanwxa.streamlit.app/',
     powerBiEmbed: null,
-    pdf: null,
+    pdf: 'https://drive.google.com/uc?export=download&id=1aRbaSuPFwfgSVl0ti2Jc6lk2Ms_Heamn',
     images: [
       'https://atulkumar7810.github.io/my_portfolio_website/packages/images/portfolio%20project/Gurgaon_analysis_report.jpg'
     ],
