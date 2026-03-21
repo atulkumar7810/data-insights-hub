@@ -139,7 +139,7 @@ const ProjectDetail = () => {
         {/* Walkthrough Video / Embed */}
         {project.id !== 'gurgaon-real-estate' && (
           <CaseStudySection className="bg-secondary/20">
-            {project.id === 'goodcabs-analysis' ? (
+            {(project.id === 'goodcabs-analysis' || project.id === 'atliq-mart-analysis') ? (
               <div className={`rounded-2xl border ${theme.borderAccent} bg-card shadow-lg overflow-hidden`}>
                 <div className="px-6 pt-6 md:px-10 md:pt-8 text-center">
                   <h3 className="font-display text-xl md:text-2xl font-bold text-foreground">
