@@ -92,7 +92,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="home" ref={containerRef} className="relative min-h-[90vh] flex items-center bg-background overflow-hidden">
+    <section id="home" ref={containerRef} className="relative min-h-[92vh] flex items-center bg-background overflow-hidden">
       {/* Animated gradient background */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
@@ -113,8 +113,8 @@ const HeroSection = () => {
         <FloatingParticle delay={4} x="85%" y="60%" size={4} />
       </div>
 
-      <div className="container-custom relative z-10 py-20 pt-24 md:py-28 md:pt-32">
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center justify-center">
+      <div className="container-custom relative z-10 py-24 pt-28 md:py-32 md:pt-36">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-20 items-center justify-center">
           
           {/* LEFT SIDE - Content (staggered entrance) */}
           <motion.div
@@ -124,15 +124,18 @@ const HeroSection = () => {
             className="w-full lg:w-1/2 order-2 lg:order-1"
           >
             <div className="relative z-10">
-              {/* Name */}
-              <motion.h1 variants={staggerItem} className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3">
+              {/* Name — larger, tighter tracking */}
+              <motion.h1
+                variants={staggerItem}
+                className="font-display text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground mb-3 tracking-tight leading-[1.1]"
+              >
                 Atul Kumar
               </motion.h1>
 
               {/* Cycling Role */}
-              <motion.div variants={staggerItem} className="flex items-center gap-2 text-accent font-medium text-lg mb-2">
+              <motion.div variants={staggerItem} className="flex items-center gap-2 text-accent font-semibold text-lg md:text-xl mb-3">
                 <Briefcase className="w-5 h-5" />
-                <span className="min-w-[200px]">
+                <span className="min-w-[220px]">
                   {displayedText}
                   <motion.span
                     className="inline-block w-0.5 h-5 bg-accent ml-0.5 align-middle"
@@ -143,15 +146,15 @@ const HeroSection = () => {
               </motion.div>
 
               {/* Location */}
-              <motion.div variants={staggerItem} className="flex items-center gap-1.5 text-muted-foreground text-sm mb-5">
+              <motion.div variants={staggerItem} className="flex items-center gap-1.5 text-muted-foreground text-sm mb-6">
                 <MapPin className="w-4 h-4" />
                 <span>India</span>
               </motion.div>
 
               {/* Tagline */}
-              <motion.div variants={staggerItem} className="relative mb-6">
-                <div className="w-12 h-0.5 bg-gradient-to-r from-accent to-transparent mb-4" />
-                <p className="text-accent text-lg md:text-xl font-medium mb-4">
+              <motion.div variants={staggerItem} className="relative mb-8">
+                <div className="w-16 h-0.5 bg-gradient-to-r from-accent to-transparent mb-5" />
+                <p className="text-accent text-xl md:text-2xl font-semibold mb-4 tracking-tight">
                   "Turning data into business insights."
                 </p>
                 <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-lg">
@@ -162,7 +165,7 @@ const HeroSection = () => {
               </motion.div>
 
               {/* Social Links */}
-              <motion.div variants={staggerItem} className="flex gap-3 mb-6">
+              <motion.div variants={staggerItem} className="flex gap-3 mb-8">
                 <motion.a 
                   href="https://github.com/atulkumar7810" 
                   target="_blank" 
@@ -185,22 +188,24 @@ const HeroSection = () => {
                 </motion.a>
               </motion.div>
 
-              {/* CTA Buttons */}
-              <motion.div variants={staggerItem} className="flex flex-col sm:flex-row gap-3">
-                <motion.div whileHover={{ y: -2, scale: 1.03 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 400, damping: 17 }}>
+              {/* CTA Buttons — gradient primary + outline secondary */}
+              <motion.div variants={staggerItem} className="flex flex-col sm:flex-row gap-4">
+                <motion.div whileHover={{ y: -3, scale: 1.04 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 400, damping: 17 }}>
                   <Button
                     onClick={() => scrollToSection('#projects')}
-                    className="bg-accent hover:bg-accent/90 text-accent-foreground gap-2 shadow-lg shadow-accent/20 hover:shadow-accent/40 transition-shadow duration-500"
+                    size="lg"
+                    className="bg-gradient-to-r from-accent to-primary text-accent-foreground gap-2 rounded-2xl shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:shadow-xl transition-all duration-500 px-8"
                   >
                     <Eye className="w-4 h-4" />
                     View Projects
                   </Button>
                 </motion.div>
-                <motion.div whileHover={{ y: -2, scale: 1.03 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 400, damping: 17 }}>
+                <motion.div whileHover={{ y: -3, scale: 1.04 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 400, damping: 17 }}>
                   <a href="/Resume.pdf" download>
                     <Button
+                      size="lg"
                       variant="outline"
-                      className="w-full border-border bg-secondary text-foreground hover:bg-accent/10 gap-2"
+                      className="w-full border-accent/30 bg-transparent text-foreground hover:bg-accent/10 hover:border-accent/50 gap-2 rounded-2xl transition-all duration-500 px-8"
                     >
                       <Download className="w-4 h-4" />
                       Resume
@@ -223,7 +228,7 @@ const HeroSection = () => {
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             >
               <motion.div 
-                className="relative w-44 h-44 md:w-56 md:h-56 lg:w-64 lg:h-64"
+                className="relative w-48 h-48 md:w-60 md:h-60 lg:w-72 lg:h-72"
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
@@ -233,7 +238,7 @@ const HeroSection = () => {
                 
                 {/* Outer glow effect */}
                 <motion.div
-                  className="absolute -inset-3 bg-gradient-to-r from-profile-glow/30 via-accent/20 to-profile-glow-alt/30 rounded-full blur-xl"
+                  className="absolute -inset-4 bg-gradient-to-r from-profile-glow/30 via-accent/20 to-profile-glow-alt/30 rounded-full blur-xl"
                   animate={{ opacity: [0.4, 0.7, 0.4] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                 />
@@ -259,7 +264,7 @@ const HeroSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
-          className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2"
+          className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2"
         >
           <motion.button 
             onClick={() => scrollToSection('#about')} 

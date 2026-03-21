@@ -1,4 +1,4 @@
-import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { Briefcase, Calendar, Building2 } from 'lucide-react';
@@ -90,7 +90,6 @@ const ExperienceSection = () => {
         const rect = el.getBoundingClientRect();
         const cardCenter = rect.top + rect.height / 2;
         const dist = Math.abs(cardCenter - center);
-        // Only highlight if card is reasonably in view
         if (dist < minDist && rect.top < window.innerHeight * 0.75 && rect.bottom > window.innerHeight * 0.25) {
           minDist = dist;
           closest = i;
@@ -106,7 +105,7 @@ const ExperienceSection = () => {
   }, []);
 
   return (
-    <section id="experience" className="section-padding bg-secondary/30" ref={sectionRef}>
+    <section id="experience" className="py-20 md:py-28 lg:py-36 bg-secondary/30" ref={sectionRef}>
       <motion.div
         className="container-custom"
         variants={sectionVariants}
@@ -114,11 +113,11 @@ const ExperienceSection = () => {
         animate={isInView ? 'visible' : 'hidden'}
       >
         {/* Section Header */}
-        <motion.div variants={itemUp} className="text-center mb-12 md:mb-16">
+        <motion.div variants={itemUp} className="text-center mb-14 md:mb-20">
           <span className="inline-block px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium mb-4">
             Professional Journey
           </span>
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-5 tracking-tight">
             Experience
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
@@ -140,7 +139,7 @@ const ExperienceSection = () => {
             }}
           />
 
-          <div className="space-y-8 md:space-y-16">
+          <div className="space-y-10 md:space-y-20">
             {experienceData.map((exp, index) => {
               const isActive = activeIndex === index;
               const isLeft = index % 2 === 0;
@@ -155,9 +154,8 @@ const ExperienceSection = () => {
                     isLeft ? 'md:flex-row' : 'md:flex-row-reverse'
                   }`}
                 >
-                  {/* Timeline dot — centered on the line */}
+                  {/* Timeline dot */}
                   <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 top-4 z-10">
-                    {/* Connector lines */}
                     <ConnectorLine
                       direction={isLeft ? 'left' : 'right'}
                       isActive={isActive && isInView}
@@ -186,7 +184,7 @@ const ExperienceSection = () => {
                   >
                     <motion.div
                       ref={(el) => { cardRefs.current[index] = el; }}
-                      className="card-elevated p-6 rounded-2xl group transition-all duration-500"
+                      className="card-elevated p-7 rounded-2xl group transition-all duration-500"
                       animate={
                         isActive
                           ? {
@@ -202,8 +200,8 @@ const ExperienceSection = () => {
                       whileHover={{ y: -4 }}
                     >
                       {/* Header */}
-                      <div className="flex items-start gap-4 mb-4">
-                        <div className="md:hidden w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center shrink-0">
+                      <div className="flex items-start gap-4 mb-5">
+                        <div className="md:hidden w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center shrink-0">
                           <Briefcase className="w-5 h-5 text-accent" />
                         </div>
                         <div className="flex-1 min-w-0">
@@ -229,7 +227,7 @@ const ExperienceSection = () => {
                       </div>
 
                       {/* Responsibilities */}
-                      <ul className="space-y-2.5 mb-5">
+                      <ul className="space-y-3 mb-6">
                         {exp.responsibilities.map((resp, i) => (
                           <motion.li
                             key={i}
@@ -249,7 +247,7 @@ const ExperienceSection = () => {
                         {exp.tools.map((tool) => (
                           <motion.span
                             key={tool}
-                            className="px-3 py-1 bg-accent/5 border border-accent/20 text-accent text-xs font-medium rounded-full hover:bg-accent/10 transition-colors"
+                            className="px-3 py-1.5 bg-accent/5 border border-accent/20 text-accent text-xs font-medium rounded-2xl hover:bg-accent/10 transition-colors"
                             whileHover={{ scale: 1.05 }}
                           >
                             {tool}
@@ -265,23 +263,23 @@ const ExperienceSection = () => {
         </div>
 
         {/* Additional CTA */}
-        <motion.div variants={itemUp} className="mt-12 md:mt-16 text-center">
-          <p className="text-sm md:text-base text-muted-foreground mb-4">
+        <motion.div variants={itemUp} className="mt-16 md:mt-20 text-center">
+          <p className="text-sm md:text-base text-muted-foreground mb-5">
             Interested in my work? Check out my projects or get in touch!
           </p>
-          <div className="flex flex-wrap justify-center gap-3 md:gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             <motion.a
               href="#projects"
-              className="px-5 py-2.5 md:px-6 md:py-2.5 bg-accent text-accent-foreground font-medium rounded-lg hover:bg-accent/90 transition-colors text-sm md:text-base min-h-[44px] flex items-center shadow-lg shadow-accent/20"
-              whileHover={{ y: -2, scale: 1.03 }}
+              className="px-6 py-3 bg-gradient-to-r from-accent to-primary text-accent-foreground font-medium rounded-2xl hover:shadow-lg hover:shadow-accent/25 transition-all duration-500 text-sm md:text-base min-h-[44px] flex items-center"
+              whileHover={{ y: -3, scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
             >
               View Projects
             </motion.a>
             <motion.a
               href="#contact"
-              className="px-5 py-2.5 md:px-6 md:py-2.5 border border-accent/30 text-foreground font-medium rounded-lg hover:bg-accent/10 transition-colors text-sm md:text-base min-h-[44px] flex items-center"
-              whileHover={{ y: -2, scale: 1.03 }}
+              className="px-6 py-3 border border-accent/30 text-foreground font-medium rounded-2xl hover:bg-accent/10 hover:border-accent/50 transition-all duration-500 text-sm md:text-base min-h-[44px] flex items-center"
+              whileHover={{ y: -3, scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
             >
               Contact Me

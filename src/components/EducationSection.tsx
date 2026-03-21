@@ -67,19 +67,19 @@ const EducationSection = () => {
   };
 
   return (
-    <section id="education" className="section-padding bg-background" ref={ref}>
+    <section id="education" className="py-20 md:py-28 lg:py-36 bg-background" ref={ref}>
       <div className="container-custom">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-14 md:mb-20"
         >
           <span className="inline-block px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium mb-4">
             Education & Certifications
           </span>
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-5 tracking-tight">
             Academic Background
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
@@ -87,16 +87,16 @@ const EducationSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-20">
           {/* Education Timeline */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="flex items-center gap-3 mb-6 md:mb-8">
-              <div className="w-9 h-9 md:w-10 md:h-10 bg-accent/10 rounded-lg flex items-center justify-center">
-                <GraduationCap className="w-4 h-4 md:w-5 md:h-5 text-accent" />
+            <div className="flex items-center gap-3 mb-8 md:mb-10">
+              <div className="w-10 h-10 md:w-11 md:h-11 bg-accent/10 rounded-xl flex items-center justify-center">
+                <GraduationCap className="w-5 h-5 text-accent" />
               </div>
               <h3 className="font-display text-xl md:text-2xl font-bold text-foreground">
                 Education
@@ -107,14 +107,14 @@ const EducationSection = () => {
               {/* Timeline line */}
               <div className="absolute left-[19px] top-0 bottom-0 w-0.5 bg-gradient-to-b from-accent via-accent/50 to-transparent" />
 
-              <div className="space-y-8">
+              <div className="space-y-10">
                 {educationData.map((edu, index) => (
                   <motion.div
                     key={edu.degree}
                     initial={{ opacity: 0, x: -20 }}
                     animate={isInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ delay: 0.3 + index * 0.15 }}
-                    className="relative pl-12 group"
+                    className="relative pl-14 group"
                   >
                     {/* Timeline dot */}
                     <div className="absolute left-0 top-2 w-10 h-10 bg-background border-2 border-accent rounded-full flex items-center justify-center group-hover:bg-accent/10 transition-colors z-10">
@@ -122,11 +122,11 @@ const EducationSection = () => {
                     </div>
 
                     {/* Card */}
-                    <div className="card-elevated p-6 rounded-xl group-hover:shadow-lg group-hover:border-accent/30 transition-all duration-300 hover:-translate-y-1">
+                    <div className="card-elevated p-7 rounded-2xl group-hover:shadow-lg group-hover:border-accent/30 transition-all duration-500 hover:-translate-y-1">
                       <h4 className="font-display text-lg font-semibold text-foreground mb-2">
                         {edu.degree}
                       </h4>
-                      <p className="text-accent font-medium mb-2">{edu.institution}</p>
+                      <p className="text-accent font-medium mb-3">{edu.institution}</p>
                       
                       <div className="flex flex-wrap gap-3 text-sm text-muted-foreground mb-3">
                         <span className="flex items-center gap-1.5">
@@ -155,16 +155,16 @@ const EducationSection = () => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
+            <div className="flex items-center gap-3 mb-8 md:mb-10">
+              <div className="w-10 h-10 md:w-11 md:h-11 bg-accent/10 rounded-xl flex items-center justify-center">
                 <Award className="w-5 h-5 text-accent" />
               </div>
-              <h3 className="font-display text-2xl font-bold text-foreground">
+              <h3 className="font-display text-xl md:text-2xl font-bold text-foreground">
                 Certifications
               </h3>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 gap-5">
               {certifications.map((cert, index) => (
                 <motion.a
                   key={cert.title}
@@ -174,10 +174,11 @@ const EducationSection = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.4 + index * 0.1 }}
-                  className="card-elevated p-5 rounded-xl group hover:shadow-lg hover:border-accent/30 transition-all duration-300 hover:-translate-y-1 cursor-pointer block"
+                  className="card-elevated p-6 rounded-2xl group hover:shadow-lg hover:border-accent/30 transition-all duration-500 hover:-translate-y-1 cursor-pointer block"
+                  whileHover={{ y: -4 }}
                 >
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center text-2xl group-hover:bg-accent/20 transition-colors shrink-0">
+                    <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center text-2xl group-hover:bg-accent/20 transition-colors shrink-0">
                       📜
                     </div>
                     <div className="min-w-0 flex-1">
@@ -233,7 +234,7 @@ const EducationSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.8 }}
-              className="mt-6 p-4 bg-accent/5 border border-accent/20 rounded-lg"
+              className="mt-8 p-5 bg-accent/5 border border-accent/20 rounded-2xl"
             >
               <p className="text-sm text-muted-foreground">
                 <span className="text-accent font-medium">Continuous Learning:</span>{' '}

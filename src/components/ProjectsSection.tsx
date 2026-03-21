@@ -19,7 +19,7 @@ const ProjectsSection = () => {
   );
 
   return (
-    <section id="projects" className="section-padding bg-background relative overflow-hidden" ref={ref}>
+    <section id="projects" className="py-20 md:py-28 lg:py-36 bg-background relative overflow-hidden" ref={ref}>
       {/* Background elements */}
       <div className="absolute top-1/2 left-0 w-72 h-72 bg-accent/5 rounded-full blur-3xl -translate-y-1/2" />
       <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
@@ -30,7 +30,7 @@ const ProjectsSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
           <motion.span 
             className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/20 text-accent rounded-full text-sm font-medium mb-6"
@@ -39,7 +39,7 @@ const ProjectsSection = () => {
             <Folder className="w-4 h-4" />
             Portfolio
           </motion.span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-5 tracking-tight">
             Featured <span className="text-gradient">Projects</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -52,19 +52,19 @@ const ProjectsSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.2 }}
-          className="flex flex-wrap justify-center items-center gap-2 mb-8 md:mb-12 px-2 overflow-x-auto"
+          className="flex flex-wrap justify-center items-center gap-2 mb-12 md:mb-16 px-2 overflow-x-auto"
         >
           <Filter className="w-4 h-4 text-muted-foreground mr-1 md:mr-2 hidden sm:block" />
           {filters.map((filter) => (
             <motion.button
               key={filter}
               onClick={() => setActiveFilter(filter)}
-              className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs sm:text-sm font-medium transition-all duration-300 min-h-[40px] whitespace-nowrap ${
+              className={`px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-2xl text-xs sm:text-sm font-medium transition-all duration-300 min-h-[40px] whitespace-nowrap ${
                 activeFilter === filter
                   ? 'bg-accent text-accent-foreground shadow-lg shadow-accent/25'
-                  : 'bg-secondary text-muted-foreground hover:text-foreground hover:bg-secondary/80'
+                  : 'bg-secondary/80 text-muted-foreground hover:text-foreground hover:bg-secondary border border-border/30'
               }`}
-              whileHover={{ scale: 1.02 }}
+              whileHover={{ scale: 1.03, y: -1 }}
               whileTap={{ scale: 0.98 }}
             >
               {filter}
@@ -72,9 +72,9 @@ const ProjectsSection = () => {
           ))}
         </motion.div>
 
-        {/* Projects Grid - Using grid-rows for equal height */}
+        {/* Projects Grid */}
         <motion.div 
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 auto-rows-fr" 
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8 auto-rows-fr" 
           layout
         >
           <AnimatePresence mode="popLayout">
