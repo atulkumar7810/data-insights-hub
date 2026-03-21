@@ -152,7 +152,7 @@ const ProjectDetail = () => {
                     className="w-full h-full border-0"
                     allow="autoplay; encrypted-media"
                     allowFullScreen
-                    title={`${project.title} Project Walkthrough Video`}
+                    title="GoodCabs Project Walkthrough Video"
                     style={{ display: 'block' }}
                   />
                 </div>
