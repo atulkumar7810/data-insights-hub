@@ -52,7 +52,7 @@ const SkillsSection = () => {
     : skills.filter(skill => skill.category.includes(activeFilter));
 
   return (
-    <section id="skills" className="section-padding bg-secondary relative overflow-hidden" ref={ref}>
+    <section id="skills" className="py-20 md:py-28 lg:py-36 bg-secondary relative overflow-hidden" ref={ref}>
       {/* Subtle background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[150px] pointer-events-none" />
       
@@ -62,13 +62,13 @@ const SkillsSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5 }}
-          className="text-center mb-8 md:mb-12"
+          className="text-center mb-12 md:mb-16"
         >
           <span className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/20 text-accent rounded-full text-sm font-medium mb-4">
             <Sparkles className="w-4 h-4" />
             Skills & Expertise
           </span>
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-5 tracking-tight">
             Technical <span className="text-gradient">Proficiency</span>
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -81,7 +81,7 @@ const SkillsSection = () => {
           initial={{ opacity: 0, y: 10 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.4, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8 md:mb-12"
+          className="flex flex-wrap justify-center gap-2 md:gap-3 mb-12 md:mb-16"
         >
           {filterTabs.map((tab) => (
             <Button
@@ -90,7 +90,7 @@ const SkillsSection = () => {
               size="sm"
               onClick={() => setActiveFilter(tab.value)}
               className={`
-                relative px-4 md:px-6 py-2 rounded-full font-medium transition-all duration-300
+                relative px-5 md:px-6 py-2.5 rounded-2xl font-medium transition-all duration-300
                 ${activeFilter === tab.value 
                   ? 'bg-accent text-accent-foreground shadow-lg shadow-accent/25' 
                   : 'bg-card/50 border-border/50 hover:border-accent/50 hover:bg-accent/10'
@@ -100,7 +100,7 @@ const SkillsSection = () => {
               {activeFilter === tab.value && (
                 <motion.div
                   layoutId="activeTab"
-                  className="absolute inset-0 bg-accent rounded-full"
+                  className="absolute inset-0 bg-accent rounded-2xl"
                   transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                 />
               )}
@@ -109,10 +109,10 @@ const SkillsSection = () => {
           ))}
         </motion.div>
 
-        {/* Skills Grid - Glassmorphism Cards */}
+        {/* Skills Grid */}
         <motion.div 
           layout
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-7"
         >
           <AnimatePresence mode="popLayout">
             {filteredSkills.map((skill, index) => (
@@ -128,7 +128,7 @@ const SkillsSection = () => {
                   layout: { type: 'spring', stiffness: 350, damping: 25 }
                 }}
               >
-                <Card className="group relative h-full p-5 md:p-6 bg-card border border-border hover:border-accent/50 hover:shadow-lg hover:shadow-accent/10 transition-all duration-500 overflow-hidden rounded-2xl">
+                <Card className="group relative h-full p-6 md:p-7 bg-card/70 backdrop-blur-sm border border-border/50 hover:border-accent/50 hover:shadow-lg hover:shadow-accent/10 transition-all duration-500 overflow-hidden rounded-2xl">
                   {/* Glassmorphism gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
@@ -143,7 +143,7 @@ const SkillsSection = () => {
                   >
                     {/* Icon with glow */}
                     <motion.div 
-                      className="relative w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center bg-gradient-to-br from-accent/20 to-accent/5 border border-accent/30 mb-4 group-hover:border-accent/60 transition-all duration-300"
+                      className="relative w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center bg-gradient-to-br from-accent/20 to-accent/5 border border-accent/30 mb-5 group-hover:border-accent/60 transition-all duration-300"
                       whileHover={{ rotate: [0, -8, 8, 0], scale: 1.08 }}
                       transition={{ duration: 0.5 }}
                     >
@@ -152,7 +152,7 @@ const SkillsSection = () => {
                     </motion.div>
                     
                     {/* Name */}
-                    <h3 className="font-display text-base md:text-lg font-semibold text-foreground mb-1.5 group-hover:text-accent transition-colors duration-300">
+                    <h3 className="font-display text-base md:text-lg font-semibold text-foreground mb-2 group-hover:text-accent transition-colors duration-300">
                       {skill.name}
                     </h3>
                     
