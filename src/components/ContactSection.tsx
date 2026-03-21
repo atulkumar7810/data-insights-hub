@@ -230,19 +230,19 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="section-padding bg-secondary" ref={ref}>
+    <section id="contact" className="py-20 md:py-28 lg:py-36 bg-secondary" ref={ref}>
       <div className="container-custom">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12 md:mb-16"
+          className="text-center mb-14 md:mb-20"
         >
           <span className="inline-block px-4 py-2 bg-accent/10 text-accent rounded-full text-sm font-medium mb-4">
             Get In Touch
           </span>
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-5 tracking-tight">
             Let's Connect
           </h2>
           <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
@@ -250,7 +250,7 @@ const ContactSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-20">
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
