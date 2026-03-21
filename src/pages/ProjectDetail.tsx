@@ -139,7 +139,7 @@ const ProjectDetail = () => {
         {/* Walkthrough Video / Embed */}
         {project.id !== 'gurgaon-real-estate' && (
           <CaseStudySection className="bg-secondary/20">
-            {(project.id === 'goodcabs-analysis' || project.id === 'atliq-mart-analysis') ? (
+            {project.id === 'goodcabs-analysis' ? (
               <div className={`rounded-2xl border ${theme.borderAccent} bg-card shadow-lg overflow-hidden`}>
                 <div className="px-6 pt-6 md:px-10 md:pt-8 text-center">
                   <h3 className="font-display text-xl md:text-2xl font-bold text-foreground">
@@ -148,13 +148,11 @@ const ProjectDetail = () => {
                 </div>
                 <div className="w-full aspect-video mt-4">
                   <iframe
-                    src={project.id === 'goodcabs-analysis'
-                      ? "https://drive.google.com/file/d/1J7ytQg0TpvErHi2wxaw7H0SQpOcY03nw/preview"
-                      : "https://drive.google.com/file/d/1EBJFkeDoCpYQpu7kcZsO0bD-z3oR3pkO/preview"}
+                    src="https://drive.google.com/file/d/1J7ytQg0TpvErHi2wxaw7H0SQpOcY03nw/preview"
                     className="w-full h-full border-0"
                     allow="autoplay; encrypted-media"
                     allowFullScreen
-                    title={`${project.title} Project Walkthrough Video`}
+                    title="GoodCabs Project Walkthrough Video"
                     style={{ display: 'block' }}
                   />
                 </div>
