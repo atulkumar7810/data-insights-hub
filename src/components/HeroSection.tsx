@@ -189,22 +189,23 @@ const HeroSection = () => {
               </motion.div>
 
               {/* CTA Buttons — gradient primary + outline secondary */}
-              <motion.div variants={staggerItem} className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
+              <motion.div variants={staggerItem} className="flex flex-col sm:flex-row gap-4">
                 <motion.div whileHover={{ y: -3, scale: 1.04 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 400, damping: 17 }}>
                   <Button
                     onClick={() => scrollToSection('#projects')}
                     size="lg"
-                    className="bg-gradient-to-r from-accent to-primary text-accent-foreground gap-2 rounded-2xl shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:shadow-xl transition-all duration-500 px-8"
+                    className="w-full sm:w-auto bg-gradient-to-r from-accent to-primary text-accent-foreground gap-2 rounded-2xl shadow-lg shadow-accent/25 hover:shadow-accent/40 hover:shadow-xl transition-all duration-500 px-8"
                   >
                     <Eye className="w-4 h-4" />
                     View Projects
                   </Button>
                 </motion.div>
                 <motion.div whileHover={{ y: -3, scale: 1.04 }} whileTap={{ scale: 0.97 }} transition={{ type: 'spring', stiffness: 400, damping: 17 }}>
-                  <a href="/Resume.pdf" download className="inline-block">
+                  <a href="/Resume.pdf" download className="block">
                     <Button
+                      size="lg"
                       variant="outline"
-                      className="w-auto border-accent/30 bg-transparent text-foreground hover:bg-accent/10 hover:border-accent/50 gap-2 rounded-2xl transition-all duration-500 text-sm md:text-base px-5 md:px-7 h-9 md:h-11"
+                      className="w-full sm:w-auto border-accent/30 bg-transparent text-foreground hover:bg-accent/10 hover:border-accent/50 gap-2 rounded-2xl transition-all duration-500 px-8"
                     >
                       <Download className="w-4 h-4" />
                       Resume
